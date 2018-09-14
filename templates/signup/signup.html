@@ -1,0 +1,85 @@
+<!DOCTYPE html> {% load staticfiles %}
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Fui - Eventos</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Roboto|Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="{% static "css/style.css" %}">
+</head>
+
+<body>
+  <section class="main">
+    <div class="signup col-md-6 centered">
+      <a class="title" href="/home"> CADASTRO ANIMAL </a>
+      <form action="/home">
+        <div class="row">
+          <div class="col-md-12">
+            <label> NOME COMPLETO </label>
+            <input>
+          </div>
+          <div class="col-md-5">
+            <label> RG </label>
+            <input placeholder="000.000.000">
+          </div>
+          <div class="col-md-7">
+            <label> CPF </label>
+            <input placeholder="000.000.000-00">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-7">
+            <label> EMAIL </label>
+            <input placeholder="email@email.com">
+          </div>
+          <div class="col-md-5">
+            <label> TELEFONE </label>
+            <input placeholder="(00) 00000-0000">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label> LOGIN </label>
+            <input>
+          </div>
+          <div class="col-md-6">
+            <label> SENHA </label>
+            <input type="password" placeholder="••••">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-10">
+            <label> RUA </label>
+            <input>
+          </div>
+          <div class="col-md-2">
+            <label> NÚMERO</label>
+            <input >
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-5">
+            <label> CIDADE </label>
+            <input>
+          </div>
+          <div class="col-md-5">
+            <label> BAIRRO </label>
+            <input >
+          </div>
+          <div class="col-md-2">
+            <label> UF </label>
+            <input >
+          </div>
+        </div>
+        <br/>
+        <button> CADASTRAR </button>
+      </form>
+    </div>
+  </section>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+</body>
+
+</html>

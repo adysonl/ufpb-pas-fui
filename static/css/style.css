@@ -4,11 +4,17 @@ body {
   color: #3b3b3b;
   background: url('../images/home_bg.png');
   background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 a, a:hover {
   color: #3b3b3b;
 }
 
+form label {
+  text-transform: uppercase;
+  margin-bottom: -4px;
+  font-size: 14px;
+}
 input, input:focus {
   width: 100%;
   border: none;
@@ -77,6 +83,7 @@ button:focus {
     left:0; right:0;
     top:0; bottom:0;
   margin:auto;
+
 }
 
 .mainsearch {
@@ -111,6 +118,18 @@ section {
   background: #eee;
 }
 
+.btn-mini, .btn-mini:focus {
+  width: 100px;
+  height: 34px;
+  background: #fff;
+  color: #3b3b3b;
+}
+
+.signup {
+  padding: 30px;
+  padding-top: 40px;
+  background: rgba(255,255,255,.8);
+}
 @font-face {
     font-family: joshandemo;
     src: url('../fonts/joshandemo.ttf');
