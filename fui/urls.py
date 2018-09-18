@@ -16,13 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
+from usuario import urls as url_user
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/',  include('home.urls')),
+    path('',  include('home.urls')),
     path('login/',  include('login.urls')),
     path('search/',  include('search.urls')),
-    path('signup/',  include('signup.urls'))
-
-
+    path('signup/',  include('signup.urls')),
+    path('accounts/',  include('django.contrib.auth.urls')),
+    path('user/', include(url_user))
 ]
