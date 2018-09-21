@@ -133,3 +133,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_URL = '/media/'
+NEDIA_ROOT = 'media'
+
+
+
+###################
+
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/user/perfil'
+
+

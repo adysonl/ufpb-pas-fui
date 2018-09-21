@@ -16,6 +16,7 @@
     <div class="login centered text-center">
       <a class="logo" href="/home"> fui </a>
       <form method="post">
+
         {% csrf_token %}
         {{form}}
         <button type="submit">ENTRAR</button>

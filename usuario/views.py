@@ -1,10 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from usuario.forms import usuario_form
 from django.contrib.auth.models import User
 from main.models import Usuario
 from django.contrib import messages
-
+from login.forms import LoginForm
 # Create your views here.
 
 def cadastro_usuario(request):
@@ -28,3 +28,5 @@ def cadastro_usuario(request):
     else:
         form = usuario_form()
     return render(request, 'signup/signup.html', {'form': form})
+
+
