@@ -15,7 +15,12 @@ form label {
   margin-bottom: -4px;
   font-size: 14px;
 }
-input, input:focus {
+
+ .input-group .form-control, .input-group-text {
+     border: none;
+ }
+
+input, input:focus{
   width: 100%;
   border: none;
   height: 40px;
@@ -86,16 +91,15 @@ button:focus {
 
 }
 
-.mainsearch {
+.search {
   width: 60%;
   height: 130px;
 }
 
-.mainsearch input {
+.search input {
   height: 56px;
   font-size: 16px;
 }
-
 
 .login {
   width: 300px;
@@ -125,11 +129,20 @@ section {
   color: #3b3b3b;
 }
 
-.signup {
-  padding: 30px;
-  padding-top: 40px;
+.main-signup {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   background: rgba(255,255,255,.8);
 }
+
+.signup {
+  background-attachment: fixed;
+  padding: 30px;
+  padding-top: 60px;
+}
+
 @font-face {
     font-family: joshandemo;
     src: url('../fonts/joshandemo.ttf');
