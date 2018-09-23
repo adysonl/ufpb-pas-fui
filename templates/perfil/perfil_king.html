@@ -9,7 +9,7 @@
 </head>
 <body>
     <p>ola {{ user.first_name }}</p>
-    <form method="POST">
+    <form action="{% url 'edit_photo' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form }}
         <button type="submit">UPLOAD</button>

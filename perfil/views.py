@@ -13,20 +13,18 @@ def perfil(request):
     if usuario.tipo == 'kg':
         return render(request, 'perfil/perfil_king.html', { 'usuario':usuario, 'form': form})
 
-@login_required
+
 def add_photo(request):
     if request.method == 'POST':
-        form = edit_photo_form(request.POST)
-        print('opaa')
+        form = edit_photo_form(request.POST, request.FILES)
         if form.is_valid():
             user = request.user
             usuario = Usuario.objects.get(user=user.id)
-            print('opa')
-            usuario.photo = form.photo
-            usuario.update()
-            return redirect('user/perfil')
-        else:
-            form = edit_photo_form()
+            usuario.photo = form.cleaned_data['photo']
+            usuario.save()
+            return redirect('perfil')
+    else:
+        form = edit_photo_form()
     return render(request, 'perfil/perfil_king.html', {'form':form})
 
 
