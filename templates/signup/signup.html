@@ -1,91 +1,74 @@
-<!DOCTYPE html> {% load staticfiles %}
-<html>
-
-<head>
-  <meta charset="utf-8">
-  <title>Fui - Eventos</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css?family=Roboto|Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="{% static "css/style.css" %}">
-</head>
-
-<body>
-  <section class="main">
-    <div class="signup col-md-6 centered">
-      <a class="title" href="/home"> CADASTRO ANIMAL </a>
-      <form method="POST">
-        {% csrf_token %}
-        <div class="row">
-          <div class="col-md-6">
-            <label> NOME </label>
-            {{form.nome}}
-          </div>
-          <div class="col-md-6">
-            <label> SOBRENOME </label>
-            {{form.sobrenome}}
-          </div>
-          <div class="col-md-5">
-            <label> RG </label>
-            {{form.rg}}
-          </div>
-          <div class="col-md-7">
-            <label> CPF </label>
-            {{form.cpf}}
-          </div>
+{% extends "base/base.html" %}
+{% block content %}
+<div class="col main-signup">
+  <div class="signup col-md-6">
+    <a class="title" href="/home"> CADASTRO ANIMAL </a>
+    <form action="{% url 'home' %}" method="POST">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-md-6">
+          <label> NOME </label>
+          {{form.nome}}
         </div>
-        <div class="row">
-          <div class="col-md-7">
-            <label> EMAIL </label>
-            {{form.email}}
-          </div>
-          <div class="col-md-5">
-            <label> TELEFONE </label>
-            {{form.telefone}}
-          </div>
+        <div class="col-md-6">
+          <label> SOBRENOME </label>
+          {{form.sobrenome}}
         </div>
-        <div class="row">
-          <div class="col-md-3">
-            <label> USERNAME </label>
-            {{form.username}}
-          </div>
-          <div class="col-md-9">
-            <label> SENHA </label>
-            {{form.senha}}
-          </div>
+        <div class="col-md-5">
+          <label> RG </label>
+          {{form.rg}}
         </div>
-        <div class="row">
-          <div class="col-md-10">
-            <label> RUA </label>
-            {{form.rua}}
-          </div>
-          <div class="col-md-2">
-            <label> NÚMERO</label>
-            {{form.numero}}
-          </div>
+        <div class="col-md-7">
+          <label> CPF </label>
+          {{form.cpf}}
         </div>
-        <div class="row">
-          <div class="col-md-5">
-            <label> CIDADE </label>
-            <{{form.cidade}}
-          </div>
-          <div class="col-md-5">
+      </div>
+      <div class="row">
+        <div class="col-md-7">
+          <label> EMAIL </label>
+          {{form.email}}
+        </div>
+        <div class="col-md-5">
+          <label> TELEFONE </label>
+          {{form.telefone}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <label> USERNAME </label>
+          {{form.username}}
+        </div>
+        <div class="col-md-9">
+          <label> SENHA </label>
+          {{form.senha}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10">
+          <label> RUA </label>
+          {{form.rua}}
+        </div>
+        <div class="col-md-2">
+          <label> NÚMERO</label>
+          {{form.numero}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-5">
+          <label> CIDADE </label>
+          < {{form.cidade}} </div> <div class="col-md-5">
             <label> BAIRRO </label>
             {{form.bairro}}
-          </div>
-          <div class="col-md-2">
-            <label> UF </label>
-            {{form.uf}}
-          </div>
         </div>
-        <br/>
-        <button> CADASTRAR </button>
-      </form>
-    </div>
-  </section>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-</body>
+        <div class="col-md-2">
+          <label> UF </label>
+          {{form.uf}}
+        </div>
+      </div>
+      <br />
+      <button> CADASTRAR </button>
+    </form>
+  </div>
+</div>
 
-</html>
--->
+{% endblock %}
