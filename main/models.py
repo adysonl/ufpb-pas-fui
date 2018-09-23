@@ -21,6 +21,7 @@ class Usuario(models.Model):
 
     user = models.OneToOneField(User, related_name="user", on_delete=models.PROTECT)
     tipo = models.CharField(max_length=6, choices=TIPO_CHOICES)
+    #username = models.CharField(max_length=100, blank=True, null=True)
     endereco = models.OneToOneField(Endereco, related_name="endereco", on_delete=models.PROTECT, blank=True, null=True)
     rg = models.CharField(max_length=15, blank=True, null=True)
     cpf = models.CharField(max_length=20, blank=True, null=True)
