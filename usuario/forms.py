@@ -11,3 +11,4 @@ class usuario_form(forms.Form):
     sobrenome = forms.CharField(label="Sobrenome nome:", max_length=100)
     email = forms.EmailField(label="Seu email:", max_length=100)
     senha = forms.CharField(label='Senha:', widget=forms.PasswordInput())
+    phone = forms.CharField(label="Telephone", max_length=9)

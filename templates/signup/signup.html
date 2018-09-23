@@ -13,8 +13,17 @@
   <section class="main">
     <div class="signup col-md-6 centered">
       <a class="title" href="/home"> CADASTRO ANIMAL </a>
+        {% if messages %}
+          <ul class="messages">
+            {% for message in messages %}
+              <li>{% if message.tags %} {{ message.tags }}: {% endif %}{{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+
       <form method="POST">
         {% csrf_token %}
+
         <div class="row">
           <div class="col-md-6">
             <label> NOME </label>

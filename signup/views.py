@@ -24,13 +24,19 @@ def cadastro_usuario(request):
             cidade = form.cleaned_data['cidade']
             bairro = form.cleaned_data['bairro']
             uf = form.cleaned_data['uf']
-
-            user = User.objects.create_user(username=email, first_name=nome, last_name=sobrenome, email=email, password=senha)
-            endereco = Endereco(rua=rua, numero=numero, cidade=cidade, bairro=bairro, uf=uf)
-            endereco.save()
-            usuario = Usuario(tipo=tipo, user=user, endereco=endereco, rg=rg, cpf=cpf, telefone=telefone)
-            usuario.save()
-            messages.success(request, 'Usuário cadastrado com sucesso!')
+            try:
+                user_test = User.objects.get(username = email)
+                if user_test:
+                    messages.error(request, 'Usuário existe!')
+            except User.DoesNotExist:
+                user = User.objects.create_user(username=email, first_name=nome, last_name=sobrenome, email=email, password=senha)
+                endereco = Endereco(rua=rua, numero=numero, cidade=cidade, bairro=bairro, uf=uf)
+                endereco.save()
+                usuario = Usuario(tipo=tipo, user=user, endereco=endereco, rg=rg, cpf=cpf, telefone=telefone)
+                usuario.save()
+                messages.success(request, 'Usuário cadastrado com sucesso!')
+                form = usuario_form()
+                return render(request, 'signup/signup.html')
     else:
         form = usuario_form()
     context_dict = {'form': form}
