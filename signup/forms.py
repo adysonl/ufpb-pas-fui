@@ -6,7 +6,7 @@ USUARIOS_CHOICE = (
 )
 
 class usuario_form(forms.Form):
-    tipo = forms.ChoiceField(label="Tipo de Usuário:", choices=USUARIOS_CHOICE, widget=forms.RadioSelect())
+    username = forms.CharField(label="Username:", max_length=100)
     nome = forms.CharField(label="Primeiro nome:", max_length=100)
     sobrenome = forms.CharField(label="Sobrenome nome:", max_length=100)
     rg = forms.CharField(max_length=15,

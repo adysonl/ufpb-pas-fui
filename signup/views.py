@@ -11,7 +11,7 @@ def cadastro_usuario(request):
     if (request.method == 'POST'):
         form = usuario_form(request.POST)
         if (form.is_valid()):
-            tipo = form.cleaned_data['tipo']
+            username = form.cleaned_data['username']
             nome = form.cleaned_data['nome']
             sobrenome = form.cleaned_data['sobrenome']
             rg = form.cleaned_data['rg']
@@ -24,6 +24,13 @@ def cadastro_usuario(request):
             cidade = form.cleaned_data['cidade']
             bairro = form.cleaned_data['bairro']
             uf = form.cleaned_data['uf']
+
+            user = User.objects.create_user(username=username, first_name=nome, last_name=sobrenome, email=email, password=senha)
+            endereco = Endereco(rua=rua, numero=numero, cidade=cidade, bairro=bairro, uf=uf)
+            endereco.save()
+            usuario = Usuario(tipo='Animal', user=user, endereco=endereco, rg=rg, cpf=cpf, telefone=telefone)
+            usuario.save()
+            messages.success(request, 'Usuário cadastrado com sucesso!')
             try:
                 user_test = User.objects.get(username = email)
                 if user_test:

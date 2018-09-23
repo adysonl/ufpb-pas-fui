@@ -1,5 +1,5 @@
 <nav class="navbar fixed-top navbar-expand-lg" id="nav-menu">
-    <a class="navbar-brand" href="/home">fui</a>
+    <a class="navbar-brand" href="{% url 'home' %}">fui</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,10 +13,10 @@
                     <a class="nav-link active" href="/">AJUDA</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="/signup">CADASTRE-SE</a>
+                    <a class="nav-link active" href="{% url 'signup' %}">CADASTRE-SE</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="/login">ENTRAR</a>
+                    <a class="nav-link active" href="{% url 'login' %}">ENTRAR</a>
                 </li>
             </ul>
         </div>

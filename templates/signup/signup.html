@@ -71,18 +71,77 @@
             <{{form.cidade}}
           </div>
           <div class="col-md-5">
+{% extends "base/base.html" %}
+{% block content %}
+<div class="col main-signup">
+  <div class="signup col-md-6">
+    <a class="title" href="/home"> CADASTRO ANIMAL </a>
+    <form action="{% url 'home' %}" method="POST">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-md-6">
+          <label> NOME </label>
+          {{form.nome}}
+        </div>
+        <div class="col-md-6">
+          <label> SOBRENOME </label>
+          {{form.sobrenome}}
+        </div>
+        <div class="col-md-5">
+          <label> RG </label>
+          {{form.rg}}
+        </div>
+        <div class="col-md-7">
+          <label> CPF </label>
+          {{form.cpf}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-7">
+          <label> EMAIL </label>
+          {{form.email}}
+        </div>
+        <div class="col-md-5">
+          <label> TELEFONE </label>
+          {{form.telefone}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <label> USERNAME </label>
+          {{form.username}}
+        </div>
+        <div class="col-md-9">
+          <label> SENHA </label>
+          {{form.senha}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10">
+          <label> RUA </label>
+          {{form.rua}}
+        </div>
+        <div class="col-md-2">
+          <label> NÚMERO</label>
+          {{form.numero}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-5">
+          <label> CIDADE </label>
+          < {{form.cidade}} </div> <div class="col-md-5">
             <label> BAIRRO </label>
             {{form.bairro}}
-          </div>
-          <div class="col-md-2">
-            <label> UF </label>
-            {{form.uf}}
-          </div>
         </div>
-        <br/>
-        <button> CADASTRAR </button>
-      </form>
-    </div>
+        <div class="col-md-2">
+          <label> UF </label>
+          {{form.uf}}
+        </div>
+      </div>
+      <br />
+      <button> CADASTRAR </button>
+    </form>
   </div>
+</div>
 
 {% endblock %}

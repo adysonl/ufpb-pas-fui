@@ -24,13 +24,11 @@
    var texto = "PROCURE EVENTOS POR TODO BRASIL";
    var result;
    var count = 0;
-
    function digitar() {
      result = document.getElementById("title");
      window.setTimeout(function() {
        inserir(texto[count]) }, 200);
      }
-
     function inserir(letra) {
       result.innerHTML += letra;
       count++;
@@ -67,4 +65,3 @@
 </body>
 
 </html>
-
