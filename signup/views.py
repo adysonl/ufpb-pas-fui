@@ -31,8 +31,7 @@ def cadastro_usuario(request):
                 if user_test:
                     messages.error(request, 'Usuário existe!')
             except User.DoesNotExist:
-                user = User.objects.create_user(username=username, first_name=nome, last_name=sobrenome, email=email)
-                user.set_password(senha)
+                user = User.objects.create_user(username=username, first_name=nome, last_name=sobrenome, email=email, password=senha)
                 endereco = Endereco(rua=rua, numero=numero, cidade=cidade, bairro=bairro, uf=uf)
                 endereco.save()
                 usuario = Usuario(tipo='Animal', user=user, endereco=endereco, rg=rg, cpf=cpf, telefone=telefone)
