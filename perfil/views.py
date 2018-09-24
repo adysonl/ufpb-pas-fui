@@ -10,7 +10,9 @@ def perfil(request):
     form = edit_photo_form()
     user = request.user
     usuario = Usuario.objects.get(user=user.id)
-    if usuario.tipo == 'kg':
+    if usuario.tipo == 'Animal':
+        return render(request, 'perfil/perfil_king.html', { 'usuario':usuario, 'form': form})
+    else:
         return render(request, 'perfil/perfil_king.html', { 'usuario':usuario, 'form': form})
 
 
