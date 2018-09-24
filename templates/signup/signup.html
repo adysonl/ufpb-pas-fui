@@ -1,82 +1,17 @@
 {% extends "base/base.html" %}
-{% block content %}
-  <div class="col main-signup">
-    <div class="signup col-md-6">
-      <a class="title" href="/home"> CADASTRO ANIMAL </a>
-        {% if messages %}
-          <ul class="messages">
-            {% for message in messages %}
-              <li>{% if message.tags %} {{ message.tags }}: {% endif %}{{ message }}</li>
-            {% endfor %}
-          </ul>
-        {% endif %}
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+  <li>{% if message.tags %} {{ message.tags }}: {% endif %}{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
 
-      <form method="POST">
-        {% csrf_token %}
-
-        <div class="row">
-          <div class="col-md-6">
-            <label> NOME </label>
-            {{form.nome}}
-          </div>
-          <div class="col-md-6">
-            <label> SOBRENOME </label>
-            {{form.sobrenome}}
-          </div>
-          <div class="col-md-5">
-            <label> RG </label>
-            {{form.rg}}
-          </div>
-          <div class="col-md-7">
-            <label> CPF </label>
-            {{form.cpf}}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-7">
-            <label> EMAIL </label>
-            {{form.email}}
-          </div>
-          <div class="col-md-5">
-            <label> TELEFONE </label>
-            {{form.telefone}}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <label> USERNAME </label>
-            <div class="input-group">
-            <div class="input-group-prepend"><span class="input-group-text">@</span></div>
-            <input class="form-control">
-          </div>
-          </div>
-          <div class="col-md-6">
-            <label> SENHA </label>
-            {{form.senha}}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-10">
-            <label> RUA </label>
-            {{form.rua}}
-          </div>
-          <div class="col-md-2">
-            <label> NÚMERO</label>
-            {{form.numero}}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-5">
-            <label> CIDADE </label>
-            <{{form.cidade}}
-          </div>
-          <div class="col-md-5">
-{% extends "base/base.html" %}
 {% block content %}
 <div class="col main-signup">
   <div class="signup col-md-6">
-    <a class="title" href="/home"> CADASTRO ANIMAL </a>
-    <form action="{% url 'home' %}" method="POST">
+    <a class="title" href="{% url 'home' %}"> CADASTRO ANIMAL </a>
+    <form method="POST">
       {% csrf_token %}
       <div class="row">
         <div class="col-md-6">
@@ -129,7 +64,8 @@
       <div class="row">
         <div class="col-md-5">
           <label> CIDADE </label>
-          < {{form.cidade}} </div> <div class="col-md-5">
+          {{form.cidade}}
+        </div> <div class="col-md-5">
             <label> BAIRRO </label>
             {{form.bairro}}
         </div>
@@ -139,7 +75,7 @@
         </div>
       </div>
       <br />
-      <button> CADASTRAR </button>
+      <button type="submit"> CADASTRAR </button>
     </form>
   </div>
 </div>
