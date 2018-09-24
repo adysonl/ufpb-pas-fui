@@ -3,7 +3,7 @@
   <section class="main">
     <div class="login centered text-center">
       <a class="logo" href="{% url 'home' %}"> fui </a>
-      <form method="post">
+      <form method="POST">
 
         {% csrf_token %}
         {{form}}

@@ -141,7 +141,7 @@ NEDIA_ROOT = 'media'
 
 ###################
 
-LOGIN_URL = '/accounts/login/'
+#LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/user/perfil'
 
 
