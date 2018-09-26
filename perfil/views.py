@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from main.models import Usuario
+from user.models import Usuario
 from django.contrib.auth.decorators import login_required
 from perfil.forms import edit_photo_form
 # Create your views here.

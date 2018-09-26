@@ -17,16 +17,14 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from django.contrib.auth import views as auth_views
-from usuario import urls as url_user
-from login.views import logout_final
+from user import urls as url_user
+from main.views import logout_user
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',  include('home.urls')),
-    path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name="login"),
-    path('logout/', logout_final,name="logout"),
-    path('search/',  include('search.urls')),
-    path('signup/',  include('signup.urls')),
+    path('',  include('main.urls')),
+    path('logout/', logout_user,name="logout"),
+    path('signup/',  include('user.urls')),
     path('accounts/',  include('django.contrib.auth.urls')),
     path('user/', include(url_user))
 ]

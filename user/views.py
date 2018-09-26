@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import usuario_form
 from django.contrib.auth.models import User
-from main.models import Usuario, Endereco
+from user.models import Usuario, Endereco
 from django.contrib import messages
 
 # Create your views here.

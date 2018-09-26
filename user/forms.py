@@ -1,10 +1,5 @@
 from django import forms
 
-USUARIOS_CHOICE = (
-    ("kg", "King"),
-    ("am", "Animal")
-)
-
 class usuario_form(forms.Form):
     username = forms.CharField(label="Username:", max_length=100)
     nome = forms.CharField(label="Primeiro nome:", max_length=100)
