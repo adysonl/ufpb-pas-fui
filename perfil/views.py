@@ -11,7 +11,7 @@ def perfil(request):
     user = request.user
     user_animal = User_animal.objects.get(user=user.id)
     if user_animal.type == 'Animal':
-        return render(request, 'perfil/perfil_king.html', { 'user_animal':user_animal, 'form': form})
+        return render(request, 'home/index.html', { 'user_animal':user_animal, 'form': form})
     else:
         return render(request, 'perfil/perfil_king.html', { 'user_animal':user_animal, 'form': form})
 
@@ -28,5 +28,3 @@ def add_photo(request):
     else:
         form = edit_photo_form()
     return render(request, 'perfil/perfil_king.html', {'form':form})
-
-
