@@ -3,24 +3,24 @@ from django.db import models
 
 # Create your models here.
 
-class Endereco(models.Model):
-    rua = models.CharField(max_length=50)
-    numero = models.CharField(max_length=20)
-    cidade = models.CharField(max_length=20)
-    bairro = models.CharField(max_length=20)
-    uf = models.CharField(max_length=15)
+class Address(models.Model):
+    street = models.CharField(max_length=50)
+    number = models.CharField(max_length=20)
+    city = models.CharField(max_length=20)
+    neighborhood = models.CharField(max_length=20)
+    df = models.CharField(max_length=15)
 
     def __str__(self):
-        return self.cidade + " " + self.uf
+        return self.city + " " + self.df
 
-class Usuario(models.Model):
+class User_animal(models.Model):
 
     user = models.OneToOneField(User, related_name="user", on_delete=models.CASCADE)
-    tipo = models.CharField(max_length=6, blank=True, null=True)
-    endereco = models.OneToOneField(Endereco, related_name="endereco", on_delete=models.CASCADE, blank=True, null=True)
+    type = models.CharField(max_length=6, blank=True, null=True)
+    address = models.OneToOneField(Address, related_name="address", on_delete=models.CASCADE, blank=True, null=True)
     rg = models.CharField(max_length=15, blank=True, null=True)
     cpf = models.CharField(max_length=20, blank=True, null=True)
-    telefone = models.CharField(max_length=20, blank=True, null=True)
+    telephone = models.CharField(max_length=20, blank=True, null=True)
     photo = models.ImageField(upload_to='media/clients_photos', null=True)
 
     def __str__(self):

@@ -1,9 +1,9 @@
 from django import forms
-from user.models import Usuario
+from user.models import User_animal
 
 class edit_photo_form(forms.Form):
     photo = forms.ImageField()
 
     class meta:
-        model = Usuario
+        model = User_animal
         fields = ['photo']
