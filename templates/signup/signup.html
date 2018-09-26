@@ -10,9 +10,9 @@
 {% block content %}
 <div class="col main-signup">
   <div class="signup col-md-6">
-    <a class="title" href="{% url 'home' %}"> CADASTRO ANIMAL </a>
+    <span class="title"> CADASTRO ANIMAL </span>
     <form method="POST">
-      {% csrf_token %}
+
       <div class="row">
         <div class="col-md-6">
           <label> NOME </label>
@@ -42,11 +42,11 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-6">
           <label> USERNAME </label>
           {{form.username}}
         </div>
-        <div class="col-md-9">
+        <div class="col-md-6">
           <label> SENHA </label>
           {{form.password}}
         </div>
