@@ -12,12 +12,19 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="/">AJUDA</a>
                 </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'logout' %}">SAIR</a>
+                </li>
+                {% else %}
                 <li class="nav-item">
                     <a class="nav-link active" href="{% url 'signup' %}">CADASTRE-SE</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="{% url 'login' %}">ENTRAR</a>
                 </li>
+                {% endif %}
+
             </ul>
         </div>
     </div>
