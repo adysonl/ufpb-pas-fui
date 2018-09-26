@@ -10,10 +10,12 @@ a, a:hover {
   color: #3b3b3b;
 }
 
-form label {
+label {
   text-transform: uppercase;
   margin-bottom: -4px;
   font-size: 14px;
+  width: 100%;
+  text-align: left;
 }
 
  .input-group .form-control, .input-group-text {

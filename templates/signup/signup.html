@@ -1,74 +1,83 @@
 {% extends "base/base.html" %}
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+  <li>{% if message.tags %} {{ message.tags }}: {% endif %}{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+
 {% block content %}
-  <div class="col main-signup">
-    <div class="signup col-md-6">
-      <a class="title" href="/home"> CADASTRO ANIMAL </a>
-      <form action="/home">
-        <div class="row">
-          <div class="col-md-12">
-            <label> NOME COMPLETO </label>
-            <input>
-          </div>
-          <div class="col-md-5">
-            <label> RG </label>
-            <input placeholder="000.000.000">
-          </div>
-          <div class="col-md-7">
-            <label> CPF </label>
-            <input placeholder="000.000.000-00">
-          </div>
+<div class="col main-signup">
+  <div class="signup col-md-6">
+    <span class="title"> CADASTRO ANIMAL </span>
+    <form method="POST">
+
+      <div class="row">
+        <div class="col-md-6">
+          <label> NOME </label>
+          {{form.name}}
         </div>
-        <div class="row">
-          <div class="col-md-7">
-            <label> EMAIL </label>
-            <input placeholder="email@email.com">
-          </div>
-          <div class="col-md-5">
-            <label> TELEFONE </label>
-            <input placeholder="(00) 00000-0000">
-          </div>
+        <div class="col-md-6">
+          <label> SOBRENOME </label>
+          {{form.last_name}}
         </div>
-        <div class="row">
-          <div class="col-md-6">
-            <label> USERNAME </label>
-            <div class="input-group">
-            <div class="input-group-prepend"><span class="input-group-text">@</span></div>
-            <input class="form-control">
-          </div>
-          </div>
-          <div class="col-md-6">
-            <label> SENHA </label>
-            <input type="password" placeholder="••••">
-          </div>
+        <div class="col-md-5">
+          <label> RG </label>
+          {{form.rg}}
         </div>
-        <div class="row">
-          <div class="col-md-10">
-            <label> RUA </label>
-            <input>
-          </div>
-          <div class="col-md-2">
-            <label> NÚMERO</label>
-            <input >
-          </div>
+        <div class="col-md-7">
+          <label> CPF </label>
+          {{form.cpf}}
         </div>
-        <div class="row">
-          <div class="col-md-5">
-            <label> CIDADE </label>
-            <input>
-          </div>
-          <div class="col-md-5">
+      </div>
+      <div class="row">
+        <div class="col-md-7">
+          <label> EMAIL </label>
+          {{form.email}}
+        </div>
+        <div class="col-md-5">
+          <label> TELEFONE </label>
+          {{form.telephone}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <label> USERNAME </label>
+          {{form.username}}
+        </div>
+        <div class="col-md-6">
+          <label> SENHA </label>
+          {{form.password}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10">
+          <label> RUA </label>
+          {{form.street}}
+        </div>
+        <div class="col-md-2">
+          <label> NÚMERO</label>
+          {{form.number}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-5">
+          <label> CIDADE </label>
+          {{form.city}}
+        </div> <div class="col-md-5">
             <label> BAIRRO </label>
-            <input >
-          </div>
-          <div class="col-md-2">
-            <label> UF </label>
-            <input >
-          </div>
+            {{form.neighborhood}}
         </div>
-        <br/>
-        <button> CADASTRAR </button>
-      </form>
-    </div>
+        <div class="col-md-2">
+          <label> UF </label>
+          {{form.df}}
+        </div>
+      </div>
+      <br />
+      <button type="submit"> CADASTRAR </button>
+    </form>
   </div>
+</div>
 
 {% endblock %}
