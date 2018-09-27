@@ -52,7 +52,11 @@
           {{form.password}}
         </div>
       </div>
+      {% else %}
+        {{ form.username = user.username }}
+        {{ form.password = user.password }}
       {% endif %}
+
       <div class="row">
         <div class="col-md-10">
           <label> RUA </label>
