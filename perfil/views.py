@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from user.models import User_animal
 from django.contrib.auth.decorators import login_required
 from perfil.forms import edit_photo_form
+from user.forms import usuario_form
+from user import urls
 # Create your views here.
 
 @login_required
@@ -11,7 +13,7 @@ def perfil(request):
     user = request.user
     user_animal = User_animal.objects.get(user=user.id)
     if user_animal.type == 'Animal':
-        return render(request, 'home/index.html', { 'user_animal':user_animal, 'form': form})
+        return render(request, 'perfil/perfil_animal.html', { 'user_animal':user_animal, 'form': form})
     else:
         return render(request, 'perfil/perfil_king.html', { 'user_animal':user_animal, 'form': form})
 
@@ -28,3 +30,25 @@ def add_photo(request):
     else:
         form = edit_photo_form()
     return render(request, 'perfil/perfil_king.html', {'form':form})
+
+def edite_perfil(request):
+    user = request.user
+    usuario = User_animal.objects.get(user=user.id)
+
+    dados = {
+        'name': user.first_name,
+        'last_name': user.last_name,
+        'rg': usuario.rg,
+        'cpf': usuario.cpf,
+        'email': usuario.user.email,
+        'telephone': usuario.telephone,
+        'street': usuario.address.street,
+        'number': usuario.address.number,
+        'city': usuario.address.city,
+        'neighborhood': usuario.address.neighborhood,
+        'df': usuario.address.df,
+        'status': 'edite'
+
+    }
+    form = usuario_form(initial = dados)
+    return render(request, 'signup/signup.html', {'form': form})

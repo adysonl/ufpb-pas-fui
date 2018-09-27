@@ -11,8 +11,8 @@
 <div class="col main-signup">
   <div class="signup col-md-6">
     <span class="title"> CADASTRO ANIMAL </span>
-    <form method="POST">
-
+    <form  action="{% url 'signup' %}" method="POST">
+          {% csrf_token %}
       <div class="row">
         <div class="col-md-6">
           <label> NOME </label>
