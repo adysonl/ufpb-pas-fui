@@ -41,6 +41,7 @@
           {{form.telephone}}
         </div>
       </div>
+      {% if user.is_authenticated == False %}
       <div class="row">
         <div class="col-md-6">
           <label> USERNAME </label>
@@ -51,6 +52,7 @@
           {{form.password}}
         </div>
       </div>
+      {% endif %}
       <div class="row">
         <div class="col-md-10">
           <label> RUA </label>

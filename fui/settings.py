@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'user',
+    'profile'
 ]
 
 MIDDLEWARE = [
@@ -138,6 +139,6 @@ NEDIA_ROOT = 'media'
 ###################
 
 #LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/user/perfil'
+LOGIN_REDIRECT_URL = '/user/profile'
 
 
