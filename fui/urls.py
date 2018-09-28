@@ -21,6 +21,7 @@ from user import urls as url_user
 from main.views import logout_user
 from django.conf import settings
 from django.conf.urls.static import static
+from event import urls as event_url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,7 +29,9 @@ urlpatterns = [
     path('logout/', logout_user,name="logout"),
     path('signup/',  include('user.urls')),
     path('accounts/',  include('django.contrib.auth.urls')),
-    path('user/', include(url_user))
+    path('user/', include(url_user)),
+    path('event/', include(event_url))
+
 ]
 if settings.DEBUG:
     urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
