@@ -12,10 +12,8 @@ def profile(request):
     form = edit_photo_form()
     user = request.user
     user_animal = User_animal.objects.get(user=user.id)
-    if user_animal.type == 'Animal':
-        return render(request, 'profile/profile_animal.html', { 'user_animal':user_animal, 'form': form})
-    else:
-        return render(request, 'profile/profile_king.html', { 'user_animal':user_animal, 'form': form})
+    return render(request, 'profile/profile_animal.html', { 'user_animal':user_animal, 'form': form})
+
 
 @login_required
 def add_photo(request):

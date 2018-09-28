@@ -23,5 +23,8 @@ class User_animal(models.Model):
     telephone = models.CharField(max_length=20, blank=True, null=True)
     photo = models.ImageField(upload_to='clients_photos/', default='clients_photos/default.jpg')
 
+
+
     def __str__(self):
         return self.user.first_name + " " + self.user.last_name
+

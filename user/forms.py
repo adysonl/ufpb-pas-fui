@@ -46,3 +46,4 @@ class usuario_form_authenticated(forms.Form):
     city = forms.CharField(max_length=15)
     neighborhood = forms.CharField(max_length=15)
     df = forms.CharField(max_length=15)
+

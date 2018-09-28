@@ -55,4 +55,7 @@ def cadastro_usuario(request):
 
     context_dict = {'form': form}
     return render(request, 'signup/signup.html', context_dict)
-    
+
+def update_to_king(request):
+    User_animal.objects.filter(user=request.user.id).update(type='kg')
+    return redirect('profile')
