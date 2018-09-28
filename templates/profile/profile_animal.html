@@ -28,9 +28,14 @@
         <h5>{{user_animal.address.street}}, n {{user_animal.address.number}}, {{user_animal.address.neighborhood}}, {{user_animal.address.city}}, {{user_animal.address.df}}.</h5>
         <h6 style="text-align: right">
             <a href="{% url 'edit_profile' %}">EDITAR</a>
+            {% if user_animal.type == "Animal" %}
             <a href="{% url 'edit_profile' %}">TORNAR-SE KING</a>
+            {% endif %}
             <a href="{% url 'edit_profile' %}">APAGAR CONTA</a>
-            <a href="{% url 'edit_profile' %}">CRIAR EVENTO</a>
+            {% if user_animal.type == "King" %}
+                <a href="{% url 'edit_profile' %}">CRIAR EVENTO</a>
+            {% endif %}
+
         </h6>
 
       </div>
