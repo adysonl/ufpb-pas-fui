@@ -9,6 +9,7 @@ from django.conf import settings
 urlpatterns = [
     path('profile/', include(profile_urls)),
     path('', views.cadastro_usuario, name = 'signup'),
+    path('create_event/', views.create_event, name='create_event'),
     path('delete_user', views.delete_user, name = 'delete_user')
 
 

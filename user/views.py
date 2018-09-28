@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import render
 from django.http import HttpResponse
-from .forms import usuario_form, usuario_form_authenticated
+from .forms import usuario_form, usuario_form_authenticated, event_form
 from django.contrib.auth.models import User
 from user.models import User_animal, Address
 from django.contrib import messages
@@ -68,3 +68,12 @@ def delete_user(request):
     user.delete()
     usuario.delete()
     return redirect('logout')
+
+def create_event(request):
+    if (request.method == 'POST'):
+        form = event_form(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    form = event_form()
+    return render(request, 'event/event.html', {'form':form})
