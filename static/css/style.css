@@ -154,3 +154,44 @@ section {
     font-family: gothamblack;
     src: url('../fonts/gotham-black.otf');
 }
+
+.profile {
+  width: 650px;
+  height: 280px;
+  text-align: center;
+}
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 100px;
+  margin-bottom: 10px;
+}
+
+input[type=file]{
+  margin-bottom: -4px;
+}
+
+.profile h5 {
+  font-weight: normal;
+  font-size: 16px;
+  border: 1px solid #2d9b8a;
+  border-radius: 3px;
+  padding: 5px;
+  width: 100%;
+  text-align: left;
+  background: #eef;
+}
+
+.profile .name{
+  text-transform: lowercase;
+}
+
+.profile a{
+  background-color: #2d9b8a;
+  padding: 6px;
+  border-radius: 3px;
+  color: white;
+  font-size: 14px;
+  text-transform: uppercase;
+}
