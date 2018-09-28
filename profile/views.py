@@ -17,7 +17,7 @@ def profile(request):
     else:
         return render(request, 'profile/profile_king.html', { 'user_animal':user_animal, 'form': form})
 
-
+@login_required
 def add_photo(request):
     if request.method == 'POST':
         form = edit_photo_form(request.POST, request.FILES)
@@ -31,11 +31,14 @@ def add_photo(request):
         form = edit_photo_form()
     return render(request, 'profile/profile_king.html', {'form':form})
 
+@login_required
 def edit_profile(request):
     user = request.user
     usuario = User_animal.objects.get(user=user.id)
 
     dados = {
+        'username' : user.username,
+        'password' : user.password,
         'name': user.first_name,
         'last_name': user.last_name,
         'rg': usuario.rg,
@@ -47,7 +50,6 @@ def edit_profile(request):
         'city': usuario.address.city,
         'neighborhood': usuario.address.neighborhood,
         'df': usuario.address.df,
-        'status': 'edite'
 
     }
     form = usuario_form(initial = dados)

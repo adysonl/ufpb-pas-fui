@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import render
 from django.http import HttpResponse
-from .forms import usuario_form
+from .forms import usuario_form, usuario_form_authenticated
 from django.contrib.auth.models import User
 from user.models import User_animal, Address
 from django.contrib import messages
@@ -15,27 +15,30 @@ names = ['username', 'name', 'last_name', 'rg', 'cpf', 'email', 'telephone', 'pa
 
 def cadastro_usuario(request):
     if (request.method == 'POST'):
-        form = usuario_form(request.POST)
         fields = {'username':'', 'name':'', 'last_name':'', 'rg':'', 'cpf':'', 'email':'', 'telephone':'', 'password':'', 'street':'', 'number':'', 'city':'', 'neighborhood':'', 'df':''}
-        form.username = fields['username']
-        form.password = fields['password']
+        if request.user.is_authenticated:
+            del fields['password']
+            del names[7]
+            form = usuario_form_authenticated(request.POST)
+        else:
+            form = usuario_form(request.POST)
+        
         if (form.is_valid()):
-            print('opa')
             for i in range(len(names)):
                 fields[names[i]] = form.cleaned_data[names[i]]
             try:
                 user_test = User.objects.get(username = fields['username'])
-                old_usuario = User_animal.objects.get(user=fields['user_test.id'])
+                old_usuario = User_animal.objects.get(user=user_test.id)
                 if request.user.is_authenticated:
                     Address.objects.filter(id=old_usuario.address.id).update(id=old_usuario.address.id,
                     street=fields['street'],number=fields['number'], city=fields['city'],neighborhood=fields['neighborhood'], df=fields['df'])
                     User_animal.objects.filter(user=user_test.id).update(type='Animal', user=user_test.id,address=old_usuario.address.id,
                     rg=fields['rg'], cpf=fields['cpf'],telephone=fields['telephone'])
                     User.objects.filter(id=user_test.id).update(username=old_usuario.user.username, first_name=fields['name'], last_name=fields['last_name']
-                    ,email=fields['email'], password= make_password(old_usuario.user.password))
+                    ,email=fields['email'])
                     user = User.objects.get(username=fields['username'])
                     login(request, user)
-                    return redirect('/user/perfil')
+                    return redirect('profile')
                 if user_test:
                     messages.error(request, 'Usuário existe!')
             except User.DoesNotExist:
@@ -49,5 +52,7 @@ def cadastro_usuario(request):
                 return render(request, 'home/index.html')
     else:
         form = usuario_form()
+
     context_dict = {'form': form}
     return render(request, 'signup/signup.html', context_dict)
+    
