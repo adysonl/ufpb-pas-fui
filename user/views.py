@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import usuario_form, usuario_form_authenticated, event_form
 from django.contrib.auth.models import User
@@ -50,7 +49,7 @@ def cadastro_usuario(request):
                 user_animal.save()
                 messages.success(request, 'Usuário cadastrado com sucesso!')
                 form = usuario_form()
-                return render(request, 'home/index.html')
+                return redirect('login')
     else:
         form = usuario_form()
 
