@@ -57,7 +57,7 @@ def cadastro_usuario(request):
     return render(request, 'signup/signup.html', context_dict)
 
 def update_to_king(request):
-    User_animal.objects.filter(user=request.user.id).update(type='kg')
+    User_animal.objects.filter(user=request.user.id).update(type='King')
     return redirect('profile')
 
 def delete_user(request):
