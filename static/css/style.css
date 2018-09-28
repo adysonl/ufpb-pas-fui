@@ -22,7 +22,7 @@ label {
      border: none;
  }
 
-input, input:focus{
+input, select, input:focus{
   width: 100%;
   border: none;
   height: 40px;
@@ -31,6 +31,11 @@ input, input:focus{
   border-radius: 3px;
   margin-bottom: 10px;
   font-size: 14px;
+}
+
+input[type='checkbox' i]{
+  width: 30px;
+
 }
 
 button, button:focus {
@@ -153,4 +158,43 @@ section {
 @font-face {
     font-family: gothamblack;
     src: url('../fonts/gotham-black.otf');
+}
+
+.profile {
+  width: 650px;
+  height: 280px;
+  text-align: center;
+}
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 100px;
+  margin-bottom: 10px;
+}
+
+input[type=file]{
+  margin-bottom: -4px;
+}
+
+.profile h5 {
+  font-weight: normal;
+  font-size: 16px;
+  border-bottom: 1px solid #2d9b8a;
+  padding: 5px;
+  width: 100%;
+  text-align: left;
+}
+
+.profile .name{
+  text-transform: lowercase;
+}
+
+.profile a{
+  background-color: #2d9b8a;
+  padding: 6px;
+  border-radius: 3px;
+  color: white;
+  font-size: 14px;
+  text-transform: uppercase;
 }

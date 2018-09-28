@@ -11,8 +11,8 @@
 <div class="col main-signup">
   <div class="signup col-md-6">
     <span class="title"> CADASTRO ANIMAL </span>
-    <form method="POST">
-
+    <form action="{% url 'signup' %}" method="POST">
+      {% csrf_token %}
       <div class="row">
         <div class="col-md-6">
           <label> NOME </label>
@@ -41,16 +41,22 @@
           {{form.telephone}}
         </div>
       </div>
+
       <div class="row">
         <div class="col-md-6">
           <label> USERNAME </label>
           {{form.username}}
         </div>
+        {% if user.is_authenticated == False %}
         <div class="col-md-6">
           <label> SENHA </label>
           {{form.password}}
         </div>
+        {%endif%}
       </div>
+
+
+
       <div class="row">
         <div class="col-md-10">
           <label> RUA </label>
@@ -65,9 +71,10 @@
         <div class="col-md-5">
           <label> CIDADE </label>
           {{form.city}}
-        </div> <div class="col-md-5">
-            <label> BAIRRO </label>
-            {{form.neighborhood}}
+        </div>
+        <div class="col-md-5">
+          <label> BAIRRO </label>
+          {{form.neighborhood}}
         </div>
         <div class="col-md-2">
           <label> UF </label>

@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-    <p>ola {{ user.first_name }}</p>
+    <p>ola {{ user.first_name }} king</p>
     <form action="{% url 'edit_photo' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form }}
