@@ -76,4 +76,4 @@ def create_event(request):
             form.save()
             return redirect('profile')
     form = event_form()
-    return render(request, 'event/event.html', {'form':form})
+    rreturn render(request, 'event/new.html', {'form':form})
