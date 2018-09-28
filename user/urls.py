@@ -8,7 +8,8 @@ from django.conf import settings
 
 urlpatterns = [
     path('profile/', include(profile_urls)),
-    path('', views.cadastro_usuario, name = 'signup')
+    path('', views.cadastro_usuario, name = 'signup'),
+    path('delete_user', views.delete_user, name = 'delete_user')
 
 
 ]+ static(settings.MEDIA_URL, dcument_root = settings.MEDIA_ROOT)

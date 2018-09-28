@@ -17,7 +17,7 @@ class Event(models.Model):
     )
 
     name = models.CharField(max_length=50, blank=True, null=True)
-    king = models.ForeignKey(User_animal, related_name="king", on_delete=models.CASCADE)
+    king = models.IntegerField(null=True)
     modality = models.CharField(max_length=2, choices=MODALITY_CHOICES, blank=True, null=True)
     forbidden = models.BooleanField(default = False)
     drinks = models.BooleanField(default = False)

@@ -8,6 +8,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 
+
 from django.contrib.auth.hashers import make_password
 
 # Create your views here.
@@ -59,3 +60,11 @@ def cadastro_usuario(request):
 def update_to_king(request):
     User_animal.objects.filter(user=request.user.id).update(type='kg')
     return redirect('profile')
+
+def delete_user(request):
+    user = request.user
+    usuario = User_animal.objects.get(user = user.id)
+    usuario.address.delete()
+    user.delete()
+    usuario.delete()
+    return redirect('logout')
