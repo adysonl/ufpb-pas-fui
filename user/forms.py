@@ -61,8 +61,8 @@ TYPE_EVENT_CHOICES = (
     )
 
 class event_form(forms.Form):
+    forms.DateInput.input_type = "date"
     name = forms.CharField(max_length=50)
-    king = forms.IntegerField(required=False)
     modality = forms.ChoiceField(choices = MODALITY_CHOICES)
     forbidden = forms.BooleanField(required=False)
     drinks = forms.BooleanField(required=False)
@@ -70,6 +70,8 @@ class event_form(forms.Form):
     capacity = forms.IntegerField(required=False)
     image = forms.ImageField()
     description = forms.CharField(max_length=250)
+    start_date = forms.DateField(widget=forms.widgets.DateInput(format="%m/%d/%Y"))
+    end_date = forms.DateField(widget=forms.widgets.DateInput(format="%m/%d/%Y"))
 
     class Meta:
         model = Event

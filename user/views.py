@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import usuario_form, usuario_form_authenticated, event_form
 from django.contrib.auth.models import User
-from user.models import User_animal, Address
+from user.models import User_animal, Address, Event
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
@@ -70,9 +70,13 @@ def delete_user(request):
 
 def create_event(request):
     if (request.method == 'POST'):
-        form = event_form(request.POST)
+        form = event_form(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            event = Event(name=form.cleaned_data['name'], king=request.user.id, modality=form.cleaned_data['modality'],
+                          forbidden=form.cleaned_data['forbidden'], drinks=form.cleaned_data['drinks'], type=form.cleaned_data['type'],
+                          description=form.cleaned_data['description'], capacity=form.cleaned_data['capacity'],image=form.cleaned_data['image'])
+            event.save()
+
             return redirect('profile')
     form = event_form()
     return render(request, 'event/new.html', {'form':form})
