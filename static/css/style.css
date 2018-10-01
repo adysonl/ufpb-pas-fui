@@ -3,7 +3,7 @@ body {
   font-family: Roboto;
   color: #3b3b3b;
   background: url('../images/home_bg.png');
-  background-repeat: no-repeat;
+  background-size: cover;
   background-attachment: fixed;
 }
 a, a:hover {
@@ -148,6 +148,7 @@ section {
   background-attachment: fixed;
   padding: 30px;
   padding-top: 60px;
+  padding-bottom: 80px;
 }
 
 @font-face {

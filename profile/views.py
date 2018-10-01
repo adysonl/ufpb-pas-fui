@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from user.models import User_animal
+from user.models import User_animal, Event
 from django.contrib.auth.decorators import login_required
 from profile.forms import edit_photo_form
 from user.forms import usuario_form
 from user import urls
+from django.contrib import messages
 # Create your views here.
 
 @login_required
@@ -52,3 +53,13 @@ def edit_profile(request):
     }
     form = usuario_form(initial = dados)
     return render(request, 'signup/signup.html', {'form': form})
+
+@login_required
+def list_event(request):
+    user = request.user
+    events = Event
+    try:
+        events = Event.objects.filter(king=user.id)
+    except events.DoesNotExist:
+        render(request, 'event/new.html')
+    return render(request, 'event/list.html', {'user': user, 'events':events})

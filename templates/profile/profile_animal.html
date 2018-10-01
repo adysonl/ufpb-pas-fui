@@ -34,7 +34,7 @@
             <a href="{% url 'delete_user' %}">APAGAR CONTA</a>
             {% if user_animal.type == "King" %}
             <a href="{% url 'create_event' %}">CRIAR EVENTO</a>
-            <a href="{% url 'edit_profile' %}">MEUS EVENTOS</a>
+            <a href="{% url 'list_event' %}">MEUS EVENTOS</a>
             {% endif %}
         </h6>
 
