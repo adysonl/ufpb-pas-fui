@@ -20,6 +20,10 @@
                 <td>{{ evt.modality }}</td>
                 <td>{{ evt.description }}</td>
                 <td>{{ evt.type }}</td>
+                <td>
+                    <a href="{% url 'edit_event' evt.id %}">EDITAR</a>
+                    <a href="{% url 'delete_event' evt.id %}">DELETAR</a>
+                </td>
             </tr>
             {% endfor %}
         </tbody>

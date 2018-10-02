@@ -16,69 +16,66 @@
       <div class="row">
         <div class="col-md-6">
           <label> NOME </label>
-          {{form.name}}
+          {{auth_f.first_name}}
         </div>
         <div class="col-md-6">
           <label> SOBRENOME </label>
-          {{form.last_name}}
+          {{auth_f.last_name}}
         </div>
         <div class="col-md-5">
           <label> RG </label>
-          {{form.rg}}
+          {{user_f.rg}} 
         </div>
         <div class="col-md-7">
           <label> CPF </label>
-          {{form.cpf}}
+          {{user_f.cpf}}
         </div>
       </div>
       <div class="row">
         <div class="col-md-7">
           <label> EMAIL </label>
-          {{form.email}}
+          {{auth_f.email}}
         </div>
         <div class="col-md-5">
           <label> TELEFONE </label>
-          {{form.telephone}}
+          {{user_f.telephone}}
         </div>
       </div>
-
       <div class="row">
         <div class="col-md-6">
           <label> USERNAME </label>
-          {{form.username}}
+          {{auth_f.username}}
         </div>
         {% if user.is_authenticated == False %}
         <div class="col-md-6">
           <label> SENHA </label>
-          {{form.password}}
+          {{auth_f.password}}
         </div>
         {%endif%}
       </div>
 
-
-
       <div class="row">
         <div class="col-md-10">
           <label> RUA </label>
-          {{form.street}}
+          {{address_f.street}}
         </div>
         <div class="col-md-2">
           <label> NÚMERO</label>
-          {{form.number}}
+          {{address_f.number}}
         </div>
       </div>
       <div class="row">
         <div class="col-md-5">
           <label> CIDADE </label>
-          {{form.city}}
+          {{address_f.city}}
         </div>
         <div class="col-md-5">
           <label> BAIRRO </label>
-          {{form.neighborhood}}
+          {{address_f.neighborhood}}
         </div>
         <div class="col-md-2">
           <label> UF </label>
-          {{form.df}}
+          {{address_f.df}}
         </div>
       </div>
       <br />

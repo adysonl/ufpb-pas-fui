@@ -35,6 +35,8 @@ class Event(models.Model):
     description = models.CharField(max_length=250, blank=True, null=True)
     capacity = models.IntegerField(default=10)
     image = models.ImageField(upload_to='event_logo/', default='event_logo/default.jpg')
+    start_date = models.DateField(blank=True, null=True)
+    end_date = models.DateField(blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -42,7 +44,7 @@ class Event(models.Model):
 class User_animal(models.Model):
 
     user = models.OneToOneField(User, related_name="user", on_delete=models.CASCADE)
-    type = models.CharField(max_length=6, blank=True, null=True)
+    type = models.CharField(max_length=6, default='Animal')
     address = models.OneToOneField(Address, related_name="address", on_delete=models.CASCADE, blank=True, null=True)
     rg = models.CharField(max_length=15, blank=True, null=True)
     cpf = models.CharField(max_length=20, blank=True, null=True)
