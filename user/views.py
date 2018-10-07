@@ -7,28 +7,28 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.hashers import make_password
-
+from profile.views import edit_profile
 # Create your views here.
 def signup_user(request):
     if (request.method == 'POST'):
         address_f = address_form(request.POST)
         auth_f = auth_user(request.POST)
         user_f = user_form(request.POST)
-        if address_f.is_valid() and user_f.is_valid() and auth_f.is_valid():
+        if address_f.is_valid() and user_f.is_valid() :
             try:
-                user = auth_f.save(commit=False)
-                user.password=make_password(auth_f.cleaned_data['password'])
-                user = auth_f.save()
+                edit_profile(request)
             except:
                 messages.error('Usuário já cadastrado')
                 render(request, 'signup/signup.html')
-                
-            address = address_f.save()
-            user_anl = user_f.save(commit=False)
-            user_anl.address = address
-            user_anl.user = user
-            user_anl.save()
-            return redirect('login')
+            if auth_f.is_valid():
+                user = auth_f.save(commit=False)
+                print('opa')
+                address = address_f.save()
+                user_anl = user_f.save(commit=False)
+                user_anl.address = address
+                user_anl.user = user
+                user_anl.save()
+                return redirect('login')
     else:
         address_f = address_form()
         user_f = user_form()
