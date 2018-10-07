@@ -14,7 +14,7 @@ def signup_user(request):
         address_f = address_form(request.POST)
         auth_f = auth_user(request.POST)
         user_f = user_form(request.POST)
-        if address_f.is_valid() and user_f.is_valid() :
+        if address_f.is_valid() and user_f.is_valid():
             try:
                 edit_profile(request)
             except:
@@ -22,7 +22,8 @@ def signup_user(request):
                 render(request, 'signup/signup.html')
             if auth_f.is_valid():
                 user = auth_f.save(commit=False)
-                print('opa')
+                user.password=make_password(auth_f.cleaned_data['password'])
+                user = auth_f.save()
                 address = address_f.save()
                 user_anl = user_f.save(commit=False)
                 user_anl.address = address
