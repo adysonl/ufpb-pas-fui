@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.models import User
-from .models import Event, Address, User_animal
+from .models import Address, User_animal
 from django.contrib.auth.forms import UserCreationForm
 
 class user_form(ModelForm):
@@ -26,10 +26,3 @@ class auth_user_on(ModelForm):
     class Meta:
         model = User
         fields = ['first_name', 'email', 'last_name','username']
-
-class event_form(ModelForm):
-    forms.DateInput.input_type = "date"
-    class Meta:
-        model = Event
-        fields = '__all__'
-        exclude = ('king',)

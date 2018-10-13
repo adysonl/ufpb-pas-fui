@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import user_form, auth_user_on, event_form, address_form, auth_user
+from .forms import user_form, auth_user_on, address_form, auth_user
 from django.contrib.auth.models import User
-from user.models import User_animal, Address, Event
+from user.models import User_animal, Address
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
@@ -51,15 +51,3 @@ def delete_user(request):
     user.delete()
     usuario.delete()
     return redirect('logout')
-
-@login_required
-def create_event(request):
-    if (request.method == 'POST'):
-        form = event_form(request.POST, request.FILES, None)
-        if form.is_valid():
-            event = form.save(commit=False)
-            event.king = request.user.id
-            event.save()
-            return redirect('profile')
-    form = event_form()
-    return render(request, 'event/new.html', {'form':form})

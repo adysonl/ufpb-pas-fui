@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from user.models import User_animal, Event, Address, User
+from user.models import User_animal, Address, User
 from django.contrib.auth.decorators import login_required
 from profile.forms import edit_photo_form
-from user.forms import user_form,event_form,address_form,auth_user_on
+from user.forms import user_form,address_form,auth_user_on
 
 # Create your views here.
 
@@ -49,30 +49,3 @@ def edit_profile(request):
     context_dict = {'address_f': address_f, 'auth_f':auth_f,
     'user_f':user_f, 'user':user,'user_anl':user_anl,'address':address}
     return render(request, 'signup/signup.html', context_dict)
-
-@login_required
-def list_event(request):
-    user = request.user
-    events = Event
-    try:
-        events = Event.objects.filter(king=user.id)
-    except events.DoesNotExist:
-        render(request, 'event/new.html')
-    return render(request, 'event/list.html', {'user': user, 'events':events})
-
-@login_required
-def edit_event(request, id):
-    event = Event.objects.get(id=id)
-    form = event_form(request.POST or None, instance=event)
-
-    if form.is_valid():
-        event = form.save()
-        return render(request, 'event/list.html')
-    context = {'form': form, 'event':event}
-    return render(request, 'event/new.html', context)
-
-@login_required
-def delete_event(request, id):
-    event = Event.objects.get(id=id)
-    event.delete()
-    return redirect('list_event')
