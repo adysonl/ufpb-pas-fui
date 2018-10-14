@@ -8,3 +8,9 @@ class event_form(ModelForm):
         model = Event
         fields = '__all__'
         exclude = ('king',)
+
+class rating_event(ModelForm):
+    class Meta:
+        model = Event
+        fields = '__all__'
+        exclude = ('user',)
