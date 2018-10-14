@@ -21,10 +21,9 @@ def create_event(request):
 def edit_event(request, id):
     event = Event.objects.get(id=id)
     form = event_form(request.POST or None, instance=event)
-
     if form.is_valid():
         event = form.save()
-        return render(request, 'event/list.html')
+        return redirect('list_event')
     context = {'form': form, 'event':event}
     return render(request, 'event/new.html', context)
 
