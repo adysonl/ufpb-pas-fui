@@ -1,4 +1,5 @@
 from .models import Event
+from main.models import Rating
 from django import forms
 from django.forms import ModelForm
 
@@ -11,6 +12,6 @@ class event_form(ModelForm):
 
 class rating_event(ModelForm):
     class Meta:
-        model = Event
+        model = Rating
         fields = '__all__'
         exclude = ('user',)

@@ -1,4 +1,5 @@
 from django import forms
+from main.models import Rating
 from django.forms import ModelForm
 from django.contrib.auth.models import User
 from .models import Address, User_animal
@@ -29,6 +30,6 @@ class auth_user_on(ModelForm):
 
 class rating_user(ModelForm):
     class Meta:
-        model = User_animal
+        model = Rating
         fields = '__all__'
         exclude = ('event',)
