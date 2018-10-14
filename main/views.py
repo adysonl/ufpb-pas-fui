@@ -1,3 +1,4 @@
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate, logout
@@ -7,8 +8,11 @@ from event.models import Event
 # Create your views here.
 
 def index(request):
-    events = Event
-    events = Event.objects.all()
+    event_list = Event.objects.all()
+    paginator = Paginator(event_list, 1) # Show 25 contacts per page
+
+    page = request.GET.get('page')
+    events = paginator.get_page(page)
     context_dict = {'events': events}
     return render(request, 'home/index.html', context=context_dict)
 
