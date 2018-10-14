@@ -27,7 +27,7 @@ class auth_user_on(ModelForm):
         model = User
         fields = ['first_name', 'email', 'last_name','username']
 
-class rating_event(ModelForm):
+class rating_user(ModelForm):
     class Meta:
         model = Event
         fields = '__all__'
