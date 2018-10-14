@@ -29,6 +29,6 @@ class auth_user_on(ModelForm):
 
 class rating_user(ModelForm):
     class Meta:
-        model = Event
+        model = User_animal
         fields = '__all__'
         exclude = ('event',)
