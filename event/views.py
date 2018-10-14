@@ -1,8 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from .forms import event_form
+from .forms import event_form, rating_event
 from .models import Event
-
+from main.models import Rating
 # Create your views here.
 
 @login_required
@@ -42,3 +42,18 @@ def list_event(request):
     except events.DoesNotExist:
         render(request, 'event/new.html')
     return render(request, 'event/list.html', {'user': user, 'events':events})
+
+@login_required
+def rating_events(request, id):
+    if (request.method == 'POST'):
+        form = rating_event(request.POST or None)
+        if form.is_valid:
+            rating = form.save(commit=False)
+            rating.type = 'event'
+            rating.user = request.user.id
+            rating.commented = id
+            rating.save()
+            return redirect('home')
+    form = rating_event()
+    return render(request, 'event/comment.html', {'form': form})
+

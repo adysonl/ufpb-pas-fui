@@ -17,6 +17,7 @@
       <img src="{{evt.image.url}}" class="img-fluid" />
       <a class="event-name" href="event">{{ evt.name }}</a>
       <p class="event-desc">{{ evt.description }}</p>
+      <a href="{% url 'create_event_comment' evt.id %}">AVALIAR</a>
     </div>
   </div>
   {% endfor %}
