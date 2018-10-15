@@ -14,4 +14,4 @@ class rating_event(ModelForm):
     class Meta:
         model = Rating
         fields = '__all__'
-        exclude = ('type','user','commented')
+        exclude = ('user_rated','user','event_rated')
