@@ -26,6 +26,8 @@ class Event(models.Model):
     image = models.ImageField(upload_to='event_logo/', default='event_logo/default.jpg')
     start_date = models.DateField(blank=True, null=True)
     end_date = models.DateField(blank=True, null=True)
+    rate = models.IntegerField(default=0,blank=True, null=True)
+    number_ratings = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name

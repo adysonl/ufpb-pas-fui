@@ -52,8 +52,16 @@ def rating_events(request, id):
             rating.type = 'event'
             rating.user = request.user.id
             rating.commented = id
+            calculate_average(id, rating.note)
             rating.save()
             return redirect('home')
     form = rating_event()
     return render(request, 'event/comment.html', {'form': form})
 
+def calculate_average(id_event, rating):
+    event = Event.objects.get(id = id_event)
+    calc1 = ((event.rate * event.number_ratings)+rating)
+    calc2 = event.number_ratings+1
+    event.rate = calc1/calc2
+    event.number_ratings += 1
+    event.save()
