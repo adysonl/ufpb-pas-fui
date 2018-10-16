@@ -1,49 +1,29 @@
 {% extends "base/base.html" %}
 {% load staticfiles %}
 {% block content %}
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-
-<body>
-
-    <img src="{{event.image.url}}" class="img-fluid" />
-    <p class="event-desc">{{ event.description }}</p>
-    {% for rt in ratings %}
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">{{rt.note}}</h5>
-            <p class="card-text">{{rt.comment}}</p>
-        </div>
-        <div class="card-footer">
-            <small class="text-muted">Avaliado por {{rt.user}}</small>
-        </div>
-        {% if rt.user == request.user.first_name%}
-        <a href="{% url 'edite_rating' rt.id %}">EDITAR AVALIACAO</a>
-        {% endif %}
-    </div>
-    {% endfor %}
-    <div class="pagination">
-        <span class="step-links">
-          {% if ratings.has_previous %}
-          <a href="?page=1">&laquo; first</a>
-          <a href="?page={{ ratings.previous_page_number }}">previous</a>
-          {% endif %}
-      
-          <span class="current">
-            Page {{ ratings.number }} of {{ ratings.paginator.num_pages }}.
-          </span>
-      
-          {% if ratings.has_next %}
-          <a href="?page={{ ratings.next_page_number }}">next</a>
-          <a href="?page={{ ratings.paginator.num_pages }}">last &raquo;</a>
-          {% endif %}
-        </span>
+<section class="col-md-12 centered" style="background: transparent">
+  <div class="event centered">
+    <div class="row">
+      <div class="col-md-8 description">
+        {{ event.name }}
+        <img src="{{event.image.url}}" class="img-fluid" />
+        <p class="description">{{ event.description }}</p>
       </div>
-</body>
-
-</html>
+      <div class="col-md-4">
+        dados do dono
+      </div>
+    </div>
+      <div class="rates" style="text-align: left; padding: 10px;">
+        AVALIAÇÕES
+        {% for rt in ratings %}
+        <div class="row rate">
+          <a href="#" class="col-md-3 bdright">{{rt.user}}</a>
+          <span class="col-md-6 bdright">{{rt.comment}}</span>
+          <span class="col-md-1 bdright">{{rt.note}}</span>
+          <a href="{% url 'edite_rating' rt.id %}" class="col-md-1"><i class="material-icons">edit</i></a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
 {% endblock %}
