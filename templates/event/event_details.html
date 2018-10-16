@@ -26,10 +26,12 @@
           <a href="#" class="col-md-3 bdright">{{rt.user}}</a>
           <span class="col-md-6 bdright">{{rt.comment}}</span>
           <span class="col-md-1 bdright">{{rt.note}}</span>
+          {% if request.user.username == rt.user %}
           <a href="{% url 'edite_rating' rt.id %}" class="col-md-1"><i class="material-icons">edit</i></a>
+          {% endif %}
         </div>
+        {% endfor %}
       </div>
-    {% endfor %}
     {% endif %}
   </div>
 </section>
