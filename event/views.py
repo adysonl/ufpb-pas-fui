@@ -86,6 +86,8 @@ def details_event(request, id):
 def edite_rating(request, id):
     rating = Rating.objects.get(id=id)
     rating_f = rating_event(request.POST or None, instance=rating)
-    if rating_f.is_valid:
-        rating.save()
+    print(rating_f.is_valid())
+    if rating_f.is_valid():
+        rating_f.save()
+        return details_event(request, rating.event_rated.id)
     return render(request, 'event/comment.html', {'form':rating_f})
