@@ -60,15 +60,6 @@ button:focus {
   font-size: 36px;
 }
 
-.event-name {
-  font-family: gothamblack;
-  font-size: 28px;
-}
-
-.event-desc {
-  font-size: 16px;
-}
-
 .navbar-brand {
   font-family: joshandemo;
   font-size: 42px;
@@ -198,4 +189,37 @@ input[type=file]{
   color: white;
   font-size: 14px;
   text-transform: uppercase;
+}
+
+
+.event {
+  width: 650px;
+  height: 280px;
+  text-align: center;
+}
+
+.event .title {
+  font-family: gothamblack;
+  font-size: 28px;
+}
+.event .description{
+  background: rgba(255,255,255,.8);
+  border-radius: 5px;
+}
+
+.event .rates {
+  width: 100%;
+  background: rgba(255,255,255,.8);
+  border-radius: 5px;
+  margin-top: 10px;
+}
+.event .rate {
+  padding: 3px;
+}
+.bdright {
+  border-right: solid 1px  #333;
+}
+
+.bdleft {
+  border-left: solid 1px  #333;
 }
