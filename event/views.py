@@ -1,3 +1,4 @@
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .forms import event_form, rating_event
@@ -73,7 +74,10 @@ def calculate_average(id_event, rate):
 def details_event(request, id):
     try:
         event = Event.objects.get(id=id)
-        ratings = Rating.objects.filter(event_rated=id)
+        ratings_filter = Rating.objects.filter(event_rated=id)
+        paginator = Paginator(ratings_filter, 3)
+        page = request.GET.get('page')
+        ratings = paginator.get_page(page)
     except:
         pass
     return render(request, 'event/event_details.html', {'event':event, 'ratings':ratings})

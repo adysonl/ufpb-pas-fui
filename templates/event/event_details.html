@@ -2,24 +2,48 @@
 {% load staticfiles %}
 {% block content %}
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <body>
 
-      <img src="{{event.image.url}}" class="img-fluid" />
-      <p class="event-desc">{{ event.description }}</p>
+    <img src="{{event.image.url}}" class="img-fluid" />
+    <p class="event-desc">{{ event.description }}</p>
     {% for rt in ratings %}
-    <div class="row">
-        <div class="col-md-3">
-            <a href="#">{{rt.user}}</a>
-            <p>{{rt.comment}}</p>
-            <p>{{rt.note}}</p>
-            <a href="{% url 'edite_rating' rt.id %}">EDITAR AVALIACAO</a>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{rt.note}}</h5>
+            <p class="card-text">{{rt.comment}}</p>
         </div>
+        <div class="card-footer">
+            <small class="text-muted">Avaliado por {{rt.user}}</small>
+        </div>
+        {% if rt.user == request.user.first_name%}
+        <a href="{% url 'edite_rating' rt.id %}">EDITAR AVALIACAO</a>
+        {% endif %}
     </div>
     {% endfor %}
+    <div class="pagination">
+        <span class="step-links">
+          {% if ratings.has_previous %}
+          <a href="?page=1">&laquo; first</a>
+          <a href="?page={{ ratings.previous_page_number }}">previous</a>
+          {% endif %}
+      
+          <span class="current">
+            Page {{ ratings.number }} of {{ ratings.paginator.num_pages }}.
+          </span>
+      
+          {% if ratings.has_next %}
+          <a href="?page={{ ratings.next_page_number }}">next</a>
+          <a href="?page={{ ratings.paginator.num_pages }}">last &raquo;</a>
+          {% endif %}
+        </span>
+      </div>
 </body>
+
 </html>
 {% endblock %}
