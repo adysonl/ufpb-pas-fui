@@ -57,9 +57,10 @@ class User_wishes(models.Model):
         ('20~30','De R$20 até R$30'),
         ('>30','Mais de R$30'),
     )
+    user = models.ForeignKey(User_animal, blank=True, null=True, on_delete=models.CASCADE)
     frequency = models.CharField(max_length=4, choices=FREQUENCY_CHOICES, blank=True, null=True)
     type = models.CharField(max_length=2, choices=TYPE_CHOICES, blank=True, null=True)
     music_taste = models.CharField(max_length=2, choices=TASTE_CHOICES, blank=True, null=True)
     drink = models.CharField(max_length=2, choices=YN_CHOICES, blank=True, null=True)
-    price = models.CharField(max_length=2, choices=PRICE_CHOICES, blank=True, null=True)
+    price = models.CharField(max_length=5, choices=PRICE_CHOICES, blank=True, null=True)
     distance = models.CharField(max_length=2, choices=YN_CHOICES, blank=True, null=True)

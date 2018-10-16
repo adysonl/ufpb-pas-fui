@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from user.models import User_animal, Address, User
 from django.contrib.auth.decorators import login_required
-from profile.forms import edit_photo_form
+from profile.forms import edit_photo_form, wishes_form
 from user.forms import user_form,address_form,auth_user_on
 
 # Create your views here.
@@ -49,3 +49,15 @@ def edit_profile(request):
     context_dict = {'address_f': address_f, 'auth_f':auth_f,
     'user_f':user_f, 'user':user,'user_anl':user_anl,'address':address}
     return render(request, 'signup/signup.html', context_dict)
+
+def user_wishes(request):
+    user = User_animal.objects.get(user=request.user)
+    if (request.method == 'POST'):
+        form = wishes_form(request.POST or None)
+        if form.is_valid():
+            wishes = form.save(commit=False)
+            wishes.user = user
+            wishes.save()
+            return redirect('profile')
+    form = wishes_form()
+    return render(request, 'profile/wishes.html', {'form':form})
