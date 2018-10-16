@@ -18,6 +18,7 @@
           <li>Final: {{ event.end_date }}</li>
       </div>
     </div>
+    {% if ratings %}
       <div class="rates" style="text-align: left; padding: 10px;">
         AVALIAÇÕES
         {% for rt in ratings %}
@@ -29,6 +30,7 @@
         </div>
       </div>
     {% endfor %}
+    {% endif %}
   </div>
 </section>
 {% endblock %}
