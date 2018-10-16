@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>comentar</title>
-</head>
-<body>
-opa
-<form method="POST">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit">avaliar</button>
-</form>
-</body>
-</html>
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% block content %}
+<section class="centered">
+  <div class="rating centered">
+    <form method="POST">
+        {% csrf_token %}
+        <label> comentário </label>
+        {{form.comment}}
+        <label> nota </label>
+        {{form.note}}
+        <button type="submit">ENVIAR</button>
+    </form>
+</div>
+</section>
+{% endblock %}
