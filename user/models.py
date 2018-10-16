@@ -22,7 +22,8 @@ class User_animal(models.Model):
     cpf = models.CharField(max_length=20, blank=True, null=True)
     telephone = models.CharField(max_length=20, blank=True, null=True)
     photo = models.ImageField(upload_to='clients_photos/', default='clients_photos/default.jpg')
-
+    rate = models.IntegerField(default=0,blank=True, null=True)
+    number_ratings = models.IntegerField(default=0)
 
 
     def __str__(self):

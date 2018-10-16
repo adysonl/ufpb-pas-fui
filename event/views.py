@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from .forms import event_form, rating_event
 from .models import Event
 from main.models import Rating
+from user.models import User_animal
 # Create your views here.
 
 @login_required
@@ -58,9 +59,18 @@ def rating_events(request, id):
             rating.event_rated = Event.objects.get(id=id)
             rating.save()
             calculate_average(id, rating.note)
+            calculate_average_user(rating.event_rated.king, rating.event_rated.rate)
             return redirect('home')
     form = rating_event()
     return render(request, 'event/comment.html', {'form': form})
+
+def calculate_average_user(user, rate):
+    user_rated = User_animal.objects.get(id=user)
+    total_rate = user_rated.rate*user_rated.number_ratings
+    user_rated.number_ratings += 1
+    new_rate = (total_rate+rate)/user_rated.number_ratings
+    user_rated.rate = new_rate
+    user_rated.save()
 
 def calculate_average(id_event, rate):
     event = Event.objects.get(id = id_event)
@@ -91,6 +101,10 @@ def edite_rating(request, id):
     rating = Rating.objects.get(id=id)
     rating_f = rating_event(request.POST or None, instance=rating)
     if rating_f.is_valid() and request.user.username == rating.user:
+        event = Event.objects.get(id=rating.event_rated.id)
+        user = User_animal.objects.get(id=event.king)
         rating_f.save()
+        event = Event.objects.get(id=rating.event_rated.id)
+        calculate_average_user(user.id, event.rate)
         return details_event(request, rating.event_rated.id)
     return render(request, 'event/comment.html', {'form':rating_f})

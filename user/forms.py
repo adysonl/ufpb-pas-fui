@@ -8,7 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 class user_form(ModelForm):
     class Meta:
         model = User_animal
-        exclude = ('address','user','type',)
+        exclude = ('address','user','type','rate', 'number_ratings')
 
 class address_form(ModelForm):
     class Meta:
