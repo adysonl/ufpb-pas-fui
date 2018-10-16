@@ -12,5 +12,5 @@ class Rating(models.Model):
     comment = models.CharField(max_length=250, blank=True, null=True)
     note = models.IntegerField(blank=True, null=True)
 
-    def __str__(self):
+    def __int__(self):
         return self.note

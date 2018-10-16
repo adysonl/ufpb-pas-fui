@@ -15,7 +15,7 @@
   <div class="row">
     <div class="col-md-3">
       <img src="{{evt.image.url}}" class="img-fluid" />
-      <a class="event-name" href="event">{{ evt.name }}</a>
+      <a class="event-name" href="{% url 'details_event' evt.id %}">{{ evt.name }}</a>
       <p class="event-desc">{{ evt.description }}</p>
       <a href="{% url 'create_event_comment' evt.id %}">AVALIAR</a>
     </div>

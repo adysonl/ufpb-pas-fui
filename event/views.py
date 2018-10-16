@@ -69,3 +69,19 @@ def calculate_average(id_event, rate):
     event.rate = overall/count
     event.number_ratings = count
     event.save()
+
+def details_event(request, id):
+    try:
+        event = Event.objects.get(id=id)
+        ratings = Rating.objects.filter(event_rated=id)
+    except:
+        pass
+    return render(request, 'event/event_details.html', {'event':event, 'ratings':ratings})
+
+@login_required
+def edite_rating(request, id):
+    rating = Rating.objects.get(id=id)
+    rating_f = rating_event(request.POST or None, instance=rating)
+    if rating_f.is_valid:
+        rating.save()
+    return render(request, 'event/comment.html', {'form':rating_f})

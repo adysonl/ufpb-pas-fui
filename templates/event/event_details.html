@@ -1,0 +1,25 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+      <img src="{{event.image.url}}" class="img-fluid" />
+      <p class="event-desc">{{ event.description }}</p>
+    {% for rt in ratings %}
+    <div class="row">
+        <div class="col-md-3">
+            <a href="#">{{rt.user}}</a>
+            <p>{{rt.comment}}</p>
+            <p>{{rt.note}}</p>
+            <a href="{% url 'edite_rating' rt.id %}">EDITAR AVALIACAO</a>
+        </div>
+    </div>
+    {% endfor %}
+</body>
+</html>
+{% endblock %}
