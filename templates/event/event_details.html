@@ -2,15 +2,20 @@
 {% load staticfiles %}
 {% block content %}
 <section class="col-md-12 centered" style="background: transparent">
-  <div class="event centered">
-    <div class="row">
-      <div class="col-md-8 description">
-        {{ event.name }}
+  <div class="events centered">
+    <div class="row description">
+      <div class="col-md-8">
         <img src="{{event.image.url}}" class="img-fluid" />
-        <p class="description">{{ event.description }}</p>
       </div>
-      <div class="col-md-4">
-        dados do dono
+      <div class="col-md-4" style="text-align: left;">
+        <div class="title"> {{ event.name }} </div>
+        <p>{{ event.description }} </p>
+          <li>{% if event.modality == "fr" %} Grátis {% else %} Pago {% endif %}</li>
+          <li>+18: {{ event.forbidden | yesno }}</li>
+          <li>Alcool: {{ event.drinks | yesno }}</li>
+          <li>Capacidade: {{ event.capacity }}</li>
+          <li>Início: {{ event.start_date }}</li>
+          <li>Final: {{ event.end_date }}</li>
       </div>
     </div>
       <div class="rates" style="text-align: left; padding: 10px;">
