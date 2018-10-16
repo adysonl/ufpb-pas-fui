@@ -9,7 +9,7 @@ from event.models import Event
 
 def index(request):
     event_list = Event.objects.all()
-    paginator = Paginator(event_list, 5) # Show 25 contacts per page
+    paginator = Paginator(event_list, 3) # Show 25 contacts per page
 
     page = request.GET.get('page')
     events = paginator.get_page(page)

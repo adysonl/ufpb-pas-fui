@@ -10,7 +10,7 @@ urlpatterns = [
     path('create_event/', views.create_event, name='create_event'),
     path('delete_event/<int:id>', views.delete_event, name='delete_event'),
     path('create_event_comment/<int:id>', views.rating_events, name='create_event_comment'),
-    path('/event_details/<int:id>', views.details_event, name='details_event'),
+    path('event_details/<int:id>', views.details_event, name='details_event'),
     path('event_rating/<int:id>', views.edite_rating, name='edite_rating')
 
 ]+ static(settings.MEDIA_URL, dcument_root = settings.MEDIA_ROOT)

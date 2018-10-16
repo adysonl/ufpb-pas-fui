@@ -11,16 +11,16 @@
 
 <section class="col-md-12 top-search">
   <span class="title"> POPULARES NO MOMENTO </span>
-  {% for evt in events %}
   <div class="row">
-    <div class="col-md-3">
+  {% for evt in events %}
+    <div class="col-md-4">
       <img src="{{evt.image.url}}" class="img-fluid" />
       <a class="event-name" href="{% url 'details_event' evt.id %}">{{ evt.name }}</a>
       <p class="event-desc">{{ evt.description }}</p>
       <a href="{% url 'create_event_comment' evt.id %}">AVALIAR</a>
     </div>
-  </div>
   {% endfor %}
+</div>
 </section>
 <div class="pagination">
   <span class="step-links">
