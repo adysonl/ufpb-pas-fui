@@ -16,6 +16,7 @@
           <li>Capacidade: {{ event.capacity }}</li>
           <li>Início: {{ event.start_date }}</li>
           <li>Final: {{ event.end_date }}</li>
+          <li>Nota: {{ event.rate }}</li>
       </div>
     </div>
     {% if ratings %}
@@ -31,6 +32,23 @@
           {% endif %}
         </div>
         {% endfor %}
+        <div class="pagination">
+          <span class="step-links">
+            {% if ratings.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ ratings.previous_page_number }}">previous</a>
+            {% endif %}
+        
+            <span class="current">
+              Page {{ ratings.number }} of {{ ratings.paginator.num_pages }}.
+            </span>
+        
+            {% if ratings.has_next %}
+            <a href="?page={{ ratings.next_page_number }}">next</a>
+            <a href="?page={{ ratings.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+          </span>
+        </div>
       </div>
     {% endif %}
   </div>
