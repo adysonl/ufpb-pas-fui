@@ -46,6 +46,10 @@ def list_event(request):
 
 @login_required
 def rating_events(request, id):
+    ratings = Rating.objects.filter(event_rated=id)
+    for rating in ratings:
+        if rating.user == request.user.username:
+            return edite_rating(request, rating.id)
     if (request.method == 'POST'):
         form = rating_event(request.POST or None)
         if form.is_valid:
@@ -86,8 +90,7 @@ def details_event(request, id):
 def edite_rating(request, id):
     rating = Rating.objects.get(id=id)
     rating_f = rating_event(request.POST or None, instance=rating)
-    print(rating_f.is_valid())
-    if rating_f.is_valid():
+    if rating_f.is_valid() and request.user.username == rating.user:
         rating_f.save()
         return details_event(request, rating.event_rated.id)
     return render(request, 'event/comment.html', {'form':rating_f})
