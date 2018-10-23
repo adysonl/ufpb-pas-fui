@@ -68,3 +68,11 @@ def user_wishes(request):
                 return redirect('profile')
         form = wishes_form()
     return render(request, 'profile/wishes.html', {'form':form})
+
+def show_others_profile(request, user):
+    try:
+        user_profile = User.objects.get(username = user)
+        user_animal = User_animal.objects.get(user = user_profile.id)
+        return render(request, 'profile/other_profile.html', {'user_animal':user_animal, 'user': user_profile})
+    except:
+        pass

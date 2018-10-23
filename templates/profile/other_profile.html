@@ -8,12 +8,15 @@
       <div class="col-md-4">
         <h1 class="navbar-brand name"> {{user.first_name}} </h1>
         <center>
-        <form action="{% url 'edit_photo' %}" method="POST" enctype="multipart/form-data">
-          {% csrf_token %}
-          <div class="profile-img" style="background: url('{{user_animal.photo.url}}');background-size: cover;display: block;"></div>
-          {{ form.photo }}
-          <button class="nav-item" type="submit">ALTERAR FOTO</button>
-        </form></center>
+            <div class="profile-img" style="background: url('{{user_animal.photo.url}}');background-size: cover;display: block;"></div>
+            {% if request.user.username == user.username %}
+                <form action="{% url 'edit_photo' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.photo }}
+                    <button class="nav-item" type="submit">ALTERAR FOTO</button>
+                </form>
+            {% endif %}
+        </center>
       </div>
       <div class="col-md-8">
         <label> EMAIL: </label>
@@ -26,7 +29,8 @@
         <h5>{{user_animal.type}}</h5>
         <label> Endereço: </label>
         <h5>{{user_animal.address.street}}, n {{user_animal.address.number}}, {{user_animal.address.neighborhood}}, {{user_animal.address.city}}, {{user_animal.address.df}}.</h5>
-        <h6 style="text-align: right; margin-top: 20px;">
+        {% if request.user.username == user.username %}
+          <h6 style="text-align: right; margin-top: 20px;">
             <a href="{% url 'edit_profile' %}">EDITAR</a>
             {% if user_animal.type != "King" %}
             <a href="{% url 'update_to_king' %}">TORNAR-SE KING</a>
@@ -36,11 +40,12 @@
             <a href="{% url 'list_event' %}">MEUS EVENTOS</a>
             {% endif %}
             <a href="{% url 'user_wishes' %}">PREFERÊNCIAS</a>
+        {% endif %}
         </h6>
 
       </div>
     </div>
   </div>
 </section>
-    
+
 {% endblock %}

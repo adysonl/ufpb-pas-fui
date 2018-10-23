@@ -24,7 +24,7 @@
         AVALIAÇÕES
         {% for rt in ratings %}
         <div class="row rate">
-          <a href="#" class="col-md-3 bdright">{{rt.user}}</a>
+          <a href="{% url 'show_others_profile' rt.user%}" class="col-md-3 bdright">{{rt.user}}</a>
           <span class="col-md-6 bdright">{{rt.comment}}</span>
           <span class="col-md-1 bdright">{{rt.note}}</span>
           {% if request.user.username == rt.user %}
