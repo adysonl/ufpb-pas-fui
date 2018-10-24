@@ -29,6 +29,7 @@
           <span class="col-md-1 bdright">{{rt.note}}</span>
           {% if request.user.username == rt.user %}
           <a href="{% url 'edite_rating' rt.id %}" class="col-md-1"><i class="material-icons">edit</i></a>
+          <a href="{% url 'delete_rating' rt.id %}" class="col-md-1"><i class="material-icons">delete</i></a>
           {% endif %}
         </div>
         {% endfor %}
