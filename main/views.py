@@ -9,6 +9,7 @@ from event.models import Event
 # Create your views here.
 
 def index(request):
+    event_list_tags = Event.objects.filter(Q())
     event_list = Event.objects.all()
     paginator = Paginator(event_list, 3) # Show 25 contacts per page
 
