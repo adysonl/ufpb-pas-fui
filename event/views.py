@@ -60,9 +60,9 @@ def rating_events(request, id):
             rating.save()
             calculate_average(id)
             calculate_average_user(rating.event_rated.king, rating.event_rated.rate)
-            return redirect('home')
+            return details_event(request, rating.event_rated.id)
     form = rating_event()
-    return render(request, 'event/comment.html', {'form': form})
+    return render(request, 'event/comment.html', {'form': form, 'event_name':rating.event_rated.name})
 
 def calculate_average_user(user, rate):
     user_rated = User_animal.objects.get(id=user)
@@ -87,6 +87,7 @@ def calculate_average(id_event):
         event.rate = 0
     event.number_ratings = count
     event.save()
+    return event.rate
 
 def details_event(request, id):
     try:

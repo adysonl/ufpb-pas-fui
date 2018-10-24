@@ -3,6 +3,7 @@
 {% block content %}
 <section class="centered">
   <div class="rating centered">
+    <div class="title"> Evento {{ event_name }} </div>
     <form method="POST">
         {% csrf_token %}
         <label> comentário </label>
