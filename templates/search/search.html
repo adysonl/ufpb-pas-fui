@@ -13,11 +13,14 @@
     <button class="btn-mini"> VALOR </button>
 </form>
     <div class="row">
-      <div class="col-md-3">
-        <img src="{% static "images/evento.png" %}" class="img-fluid"/>
-        <a class="event-name" href="event"> Event Name </a>
-        <p class="event-desc"> Descrição do evento evento evento evento evento evento evento evento evento evento </p>
-      </div>
+      {% for evt in events %}
+      <div class="event col-md-4">
+      <img src="{{evt.image.url}}" class="img-fluid" />
+      <a class="title" href="{% url 'details_event' evt.id %}">{{ evt.name }}</a>
+      <p class="event-desc">{{ evt.description }}</p>
+      <a href="{% url 'create_event_comment' evt.id %}">AVALIAR</a>
+    </div>
+      {% endfor %}
     </div>
   </section>
   {% endblock %}

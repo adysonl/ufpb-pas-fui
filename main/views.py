@@ -1,4 +1,5 @@
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate, logout
@@ -17,8 +18,10 @@ def index(request):
     return render(request, 'home/index.html', context=context_dict)
 
 def search(request):
-    context_dict = {'nome_do_prato': "Pizza de Pepperoni"}
-    return render(request, 'search/search.html', context=context_dict)
+    keyword = request.GET.get('search')
+    events = list(Event.objects.filter(Q(name__contains=keyword) | Q(description__contains=keyword)))
+    events.sort(key=lambda event: event.rate, reverse=True)
+    return render(request, 'search/search.html', {'events':events})
 
 def login_user(request):
     if request.method == 'POST':
