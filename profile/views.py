@@ -38,7 +38,6 @@ def edit_profile(request):
     auth_f = auth_user_on(request.POST or None, instance=user)
     user_f = user_form(request.POST or None, instance=user_anl)
     if address_f.is_valid() and user_f.is_valid() and auth_f.is_valid():
-        print('affffffffffffffffffffffffffff')
         address = address_f.save()
         user = auth_f.save()
         user_anl = user_f.save(commit=False)

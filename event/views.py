@@ -2,6 +2,7 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .forms import event_form, rating_event
+from django.contrib.auth.models import User
 from .models import Event
 from main.models import Rating
 from user.models import User_animal
@@ -13,7 +14,7 @@ def create_event(request):
         form = event_form(request.POST, request.FILES, None)
         if form.is_valid():
             event = form.save(commit=False)
-            event.king = request.user.id
+            event.user = request.user
             event.save()
             return redirect('profile')
     form = event_form()
@@ -40,37 +41,47 @@ def list_event(request):
     user = request.user
     events = Event
     try:
-        events = Event.objects.filter(king=user.id)
+        events = Event.objects.filter(user=user)
     except events.DoesNotExist:
         render(request, 'event/new.html')
     return render(request, 'event/list.html', {'user': user, 'events':events})
 
 @login_required
 def rating_events(request, id):
+    event = Event.objects.get(id=id)
+    user = User.objects.get(id=event.user.id)
     ratings = Rating.objects.filter(event_rated=id)
     for rating in ratings:
-        if rating.user == request.user.username:
+        if rating.user_rater == request.user:
             return edite_rating(request, rating.id)
     if (request.method == 'POST'):
         form = rating_event(request.POST or None)
         if form.is_valid:
             rating = form.save(commit=False)
             rating.user = request.user.first_name
+            rating.user_rater = request.user
             rating.event_rated = Event.objects.get(id=id)
             rating.save()
             calculate_average(id)
-            calculate_average_user(rating.event_rated.king, rating.event_rated.rate)
+            calculate_average_user(user)
             return details_event(request, rating.event_rated.id)
     form = rating_event()
-    return render(request, 'event/comment.html', {'form': form, 'event_name':rating.event_rated.name})
+    return render(request, 'event/comment.html', {'form': form, 'event_name':event.name})
 
-def calculate_average_user(user, rate):
-    user_rated = User_animal.objects.get(id=user)
-    total_rate = user_rated.rate*user_rated.number_ratings
-    user_rated.number_ratings += 1
-    new_rate = (total_rate+rate)/user_rated.number_ratings
-    user_rated.rate = new_rate
-    user_rated.save()
+def calculate_average_user(user):
+    overall = 0
+    count = 0
+    events = Event.objects.all()
+    user_anl = User_animal.objects.get(user=user)
+    for event in events:
+        overall+=event.rate
+        count+=1
+    if count >= 1:
+        user_anl.rate = overall/count
+    else:
+        user_anl.rate = 0
+    user_anl.number_ratings = count
+    user_anl.save()
 
 def calculate_average(id_event):
     event = Event.objects.get(id = id_event)
@@ -81,13 +92,12 @@ def calculate_average(id_event):
         if i.event_rated == event:
             overall+=i.note
             count+=1
-    if count > 0:
+    if count >= 1:
         event.rate = overall/count
     else:
         event.rate = 0
     event.number_ratings = count
     event.save()
-    return event.rate
 
 def details_event(request, id):
     try:
@@ -103,20 +113,22 @@ def details_event(request, id):
 @login_required
 def edite_rating(request, id):
     rating = Rating.objects.get(id=id)
+    event = Event.objects.get(id=rating.event_rated.id)
+    user = User.objects.get(id=event.user.id)
     rating_f = rating_event(request.POST or None, instance=rating)
     if rating_f.is_valid() and request.user.username == rating.user:
-        event = Event.objects.get(id=rating.event_rated.id)
-        user = User_animal.objects.get(id=event.king)
         rating_f.save()
         calculate_average(event.id)
-        calculate_average_user(user.id, event.rate)
+        calculate_average_user(user)
         return details_event(request, rating.event_rated.id)
-    return render(request, 'event/comment.html', {'form':rating_f})
+    return render(request, 'event/comment.html', {'form':rating_f, 'event_name':event.name})
 
 @login_required
 def delete_rating(request, id):
     rating = Rating.objects.get(id=id)
     event = Event.objects.get(id=rating.event_rated.id)
+    user = User.objects.get(id=event.user.id)
     rating.delete()
     calculate_average(event.id)
+    calculate_average_user(user)
     return details_event(request, event.id)

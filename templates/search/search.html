@@ -6,8 +6,8 @@
   <section class="col-md-12 top-search">
     <br/>
     <br/>
-  <form>
-    <input placeholder="PROCURAR ... ">
+  <form action="{% url 'search' %}">
+    <input name='search' placeholder="PROCURAR ...">
     <button class="btn-mini"> DATAS </button>
     <button class="btn-mini"> CIDADE </button>
     <button class="btn-mini"> VALOR </button>

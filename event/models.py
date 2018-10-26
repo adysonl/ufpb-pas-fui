@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -47,7 +47,7 @@ class Event(models.Model):
     )
 
     name = models.CharField(max_length=50, blank=True, null=True)
-    king = models.IntegerField(null=True)
+    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
     modality = models.CharField(max_length=2, choices=MODALITY_CHOICES, blank=True, null=True)
     forbidden = models.BooleanField(default = False)
     drinks = models.BooleanField(default = False)
