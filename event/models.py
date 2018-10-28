@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django_resized import ResizedImageField
 
 # Create your models here.
 
@@ -54,7 +55,7 @@ class Event(models.Model):
     type = models.CharField(max_length=2, choices=TYPE_EVENT_CHOICES, blank=True, null=True)
     description = models.CharField(max_length=250, blank=True, null=True)
     capacity = models.IntegerField(default=10)
-    image = models.ImageField(upload_to='event_logo/', default='event_logo/default.jpg')
+    image = ResizedImageField(upload_to='event_logo/', default='event_logo/default.jpg', size=[397, 397], crop=['middle', 'center'])
     start_date = models.DateField(blank=True, null=True)
     end_date = models.DateField(blank=True, null=True)
     rate = models.IntegerField(default=0,blank=True, null=True)

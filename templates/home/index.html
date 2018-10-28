@@ -2,6 +2,11 @@
 {% load staticfiles %}
 
 {% block content %}
+<style>
+.my-row { 
+  height: 100%;  
+}
+</style>
 <section class="main">
   <div class="search centered">
     <span class="title"><span id="title"></span>|</span>
@@ -14,11 +19,12 @@
   <div class="row">
   {% for evt in events %}
     <div class="event col-md-4">
-      <img src="{{evt.image.url}}" class="img-fluid" />
-      <a class="title" href="{% url 'details_event' evt.id %}">{{ evt.name }}</a>
-      <p class="event-desc">{{ evt.description }}</p>
-      <a href="{% url 'create_event_comment' evt.id %}">AVALIAR</a>
+      <div class="my-row" style="background: url('{{evt.image.url}}');background-size: auto;display: block;background-repeat: no-repeat;height: 400px;">
     </div>
+    <a class="title" href="{% url 'details_event' evt.id %}"><p>{{ evt.name }}</p></a>
+    <p class="event-desc">{{ evt.description }}</p>
+    <a href="{% url 'create_event_comment' evt.id %}">AVALIAR</a>
+  </div>
   {% endfor %}
 </div>
 </section>

@@ -17,6 +17,7 @@
           <li>Início: {{ event.start_date }}</li>
           <li>Final: {{ event.end_date }}</li>
           <li>Nota: {{ event.rate }}</li>
+          <li><a href="{% url 'create_event_comment' event.id %}">AVALIAR</a></li>
       </div>
     </div>
     {% if ratings %}

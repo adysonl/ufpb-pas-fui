@@ -8,15 +8,13 @@
     <br/>
   <form action="{% url 'search' %}">
     <input name='search' placeholder="PROCURAR ...">
-    <button class="btn-mini"> DATAS </button>
-    <button class="btn-mini"> CIDADE </button>
-    <button class="btn-mini"> VALOR </button>
+    <button class="btn-mini"> PREFERÊNCIAS </button>
 </form>
     <div class="row">
       {% for evt in events %}
       <div class="event col-md-4">
       <img src="{{evt.image.url}}" class="img-fluid" />
-      <a class="title" href="{% url 'details_event' evt.id %}">{{ evt.name }}</a>
+      <a class="title" href="{% url 'details_event' evt.id %}"><p>{{ evt.name }}</p></a>
       <p class="event-desc">{{ evt.description }}</p>
       <a href="{% url 'create_event_comment' evt.id %}">AVALIAR</a>
     </div>
