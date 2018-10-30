@@ -20,7 +20,7 @@ STATICFILES_DIRS = [STATIC_DIR]
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, "media/sent_emails")
 
 
 # Quick-start development settings - unsuitable for production
