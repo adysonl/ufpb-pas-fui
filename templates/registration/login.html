@@ -11,7 +11,7 @@
             {{form.password}}
         <button type="submit">ENTRAR</button>
       </form>
-      <a class="extra" href="esqueceu"> Esqueceu sua senha?</a> <br/>
+      <a class="extra" href="{% url 'password_reset' %}"> Esqueceu sua senha?</a> <br/>
       <a class="extra" href="{% url 'signup' %}"> Cadastre-se</a> <br/>
 
       {% if form.errors %}
