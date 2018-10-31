@@ -1,11 +1,12 @@
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from .forms import event_form, rating_event
+from .forms import event_form, rating_event, event_tags_form
 from django.contrib.auth.models import User
-from .models import Event
+from .models import Event, EventTags
 from main.models import Rating
-from user.models import User_animal
+from user.models import User_animal, Wishes
+from profile.forms import wishes_form
 # Create your views here.
 
 @login_required
@@ -25,7 +26,8 @@ def edit_event(request, id):
     event = Event.objects.get(id=id)
     form = event_form(request.POST or None, instance=event)
     if form.is_valid():
-        event = form.save()
+        event = form.save(commit=False)
+        event.user = request.user
         return redirect('list_event')
     context = {'form': form, 'event':event}
     return render(request, 'event/new.html', context)
@@ -132,3 +134,25 @@ def delete_rating(request, id):
     calculate_average(event.id)
     calculate_average_user(user)
     return details_event(request, event.id)
+
+@login_required
+def event_tags(request, id):
+    event = Event.objects.get(id=id)
+    try:
+        tags = event.tags
+        form = event_tags_form(request.POST or None, instance=tags)
+        if form.is_valid():
+            event.tags = form
+            event.save()
+            return redirect('profile')
+    except:
+        if (request.method == 'POST'):
+            form = event_tags_form(request.POST or None)
+            if form.is_valid():
+                tags = form.save()
+                event.tags = tags
+                event.save()
+                return redirect('profile')
+        form = event_tags_form()
+    return render(request, 'event/event_tags.html', {'form':form})
+

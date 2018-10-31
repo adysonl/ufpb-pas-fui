@@ -1,4 +1,4 @@
-from .models import Event
+from .models import Event, EventTags
 from main.models import Rating
 from django import forms
 from django.forms import ModelForm
@@ -15,3 +15,8 @@ class rating_event(ModelForm):
         model = Rating
         fields = '__all__'
         exclude = ('user_rated','user','event_rated')
+
+class event_tags_form(forms.ModelForm):
+    class Meta:
+        model = EventTags
+        fields = '__all__'

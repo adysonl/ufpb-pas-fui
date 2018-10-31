@@ -12,24 +12,7 @@ class Address(models.Model):
 
     def __str__(self):
         return self.city + " " + self.df
-
-class User_animal(models.Model):
-
-    user = models.OneToOneField(User, related_name="user", on_delete=models.CASCADE)
-    type = models.CharField(max_length=6, default='Animal')
-    address = models.OneToOneField(Address, related_name="address", on_delete=models.CASCADE, blank=True, null=True)
-    rg = models.CharField(max_length=15, blank=True, null=True)
-    cpf = models.CharField(max_length=20, blank=True, null=True)
-    telephone = models.CharField(max_length=20, blank=True, null=True)
-    photo = models.ImageField(upload_to='clients_photos/', default='clients_photos/default.jpg')
-    rate = models.IntegerField(default=0,blank=True, null=True)
-    number_ratings = models.IntegerField(default=0)
-
-
-    def __str__(self):
-        return self.user.first_name + " " + self.user.last_name
-
-class User_wishes(models.Model):
+class Wishes(models.Model):
     FREQUENCY_CHOICES = (
         ('1','1 vez por semana'),
         ('2','2 vezes por semana'),
@@ -58,10 +41,27 @@ class User_wishes(models.Model):
         ('20~30','De R$20 até R$30'),
         ('>30','Mais de R$30'),
     )
-    user = models.ForeignKey(User_animal, blank=True, null=True, on_delete=models.CASCADE)
+
     frequency = models.CharField(max_length=4, choices=FREQUENCY_CHOICES, blank=True, null=True)
     type = models.CharField(max_length=2, choices=TYPE_CHOICES, blank=True, null=True)
     music_taste = models.CharField(max_length=2, choices=TASTE_CHOICES, blank=True, null=True)
     drink = models.CharField(max_length=2, choices=YN_CHOICES, blank=True, null=True)
     price = models.CharField(max_length=5, choices=PRICE_CHOICES, blank=True, null=True)
     distance = models.CharField(max_length=2, choices=YN_CHOICES, blank=True, null=True)
+
+class User_animal(models.Model):
+
+    user = models.OneToOneField(User, related_name="user", on_delete=models.CASCADE)
+    type = models.CharField(max_length=6, default='Animal')
+    address = models.OneToOneField(Address, related_name="address", on_delete=models.CASCADE, blank=True, null=True)
+    rg = models.CharField(max_length=15, blank=True, null=True)
+    cpf = models.CharField(max_length=20, blank=True, null=True)
+    telephone = models.CharField(max_length=20, blank=True, null=True)
+    photo = models.ImageField(upload_to='clients_photos/', default='clients_photos/default.jpg')
+    rate = models.IntegerField(default=0,blank=True, null=True)
+    number_ratings = models.IntegerField(default=0)
+    wishes = models.ForeignKey(Wishes, blank=True, null=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.first_name + " " + self.user.last_name
+

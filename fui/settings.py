@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'fui.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'fui',
+        'NAME': 'fui2',
         'USER' : 'postgres',
         'PASSWORD' : 'admin',
         'HOST' : 'localhost',

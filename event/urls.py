@@ -12,6 +12,6 @@ urlpatterns = [
     path('create_event_comment/<int:id>', views.rating_events, name='create_event_comment'),
     path('event_details/<int:id>', views.details_event, name='details_event'),
     path('event_rating/<int:id>', views.edite_rating, name='edite_rating'),
-    path('delete_rating/<int:id>', views.delete_rating, name='delete_rating')
-
+    path('delete_rating/<int:id>', views.delete_rating, name='delete_rating'),
+    path('event_tags/<int:id>', views.event_tags, name='event_tags')
 ]+ static(settings.MEDIA_URL, dcument_root = settings.MEDIA_ROOT)

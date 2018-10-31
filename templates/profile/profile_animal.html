@@ -30,6 +30,7 @@
         <h5>{{user_animal.address.street}}, n {{user_animal.address.number}}, {{user_animal.address.neighborhood}}, {{user_animal.address.city}}, {{user_animal.address.df}}.</h5>
         <h6 style="text-align: right; margin-top: 20px;">
             <a href="{% url 'edit_profile' %}">EDITAR</a>
+
             {% if user_animal.type != "King" %}
             <a href="{% url 'update_to_king' %}">TORNAR-SE KING</a>
             {% endif %}

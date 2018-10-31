@@ -1,5 +1,5 @@
 from django import forms
-from user.models import User_animal, User_wishes
+from user.models import User_animal, Wishes
 
 class edit_photo_form(forms.Form):
     photo = forms.ImageField()
@@ -10,6 +10,6 @@ class edit_photo_form(forms.Form):
 
 class wishes_form(forms.ModelForm):
     class Meta:
-        model = User_wishes
+        model = Wishes
         fields = '__all__'
         exclude = ('user',)
