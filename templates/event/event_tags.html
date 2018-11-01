@@ -1,16 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<form method="POST">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit">adicionar</button>
-</form>
+{% extends "base/base.html" %}
+    {% load staticfiles %}
+    {% block content %}
+    <section class="centered">
+      <div class="rating centered">
+        <div class="title"> Evento {{ event_name }} - Tags </div>
+        <form method="POST">
+            {% csrf_token %}
+            <label> Tipo </label>
+            {{form.type}}
+            <label> Gosto Musical </label>
+            {{form.music_taste}}
+            <label> Bebidas </label>
+            {{form.drink}}
+            <label> Preço </label>
+            {{form.price}}
+            <label> Distância </label>
+            {{form.distance}}
 
-
-</body>
-</html>
+            <button type="submit">Adicionar</button>
+        </form>
+    </div>
+    </section>
+    {% endblock %}
