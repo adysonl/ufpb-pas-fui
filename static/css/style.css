@@ -3,7 +3,7 @@ body {
   font-family: Roboto;
   color: #3b3b3b;
   background: url('../images/home_bg.png');
-  background-repeat: no-repeat;
+  background-size: cover;
   background-attachment: fixed;
 }
 a, a:hover {
@@ -58,15 +58,6 @@ button:focus {
 .title {
   font-family: gothamblack;
   font-size: 36px;
-}
-
-.event-name {
-  font-family: gothamblack;
-  font-size: 28px;
-}
-
-.event-desc {
-  font-size: 16px;
 }
 
 .navbar-brand {
@@ -148,6 +139,7 @@ section {
   background-attachment: fixed;
   padding: 30px;
   padding-top: 60px;
+  padding-bottom: 80px;
 }
 
 @font-face {
@@ -197,4 +189,42 @@ input[type=file]{
   color: white;
   font-size: 14px;
   text-transform: uppercase;
+}
+
+
+.events {
+  width: 650px;
+  height: 280px;
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top: 80px;
+
+}
+
+.event .title {
+  font-family: gothamblack;
+  font-size: 28px;
+}
+
+.events .description{
+  background: rgba(255,255,255,.8);
+  border-radius: 5px;
+}
+
+.events .rates {
+  width: 100%;
+  background: rgba(255,255,255,.8);
+  border-radius: 5px;
+  margin-top: 10px;
+}
+.events .rate {
+  padding: 3px;
+}
+.bdright {
+  border-right: solid 1px  #333;
+}
+
+.rating {
+  width: 300px;
+  height: 350px;
 }

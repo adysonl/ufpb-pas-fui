@@ -1,0 +1,16 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% block content %}
+<section class="centered">
+  <div class="rating centered">
+    <form method="POST">
+        {% csrf_token %}
+        <label> comentário </label>
+        {{form.comment}}
+        <label> nota </label>
+        {{form.note}}
+        <button type="submit">ENVIAR</button>
+    </form>
+</div>
+</section>
+{% endblock %}

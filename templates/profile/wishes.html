@@ -1,0 +1,50 @@
+{% extends "base/base.html" %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li>{% if message.tags %} {{ message.tags }}: {% endif %}{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% block content %}
+<div class="col main-signup">
+    <div class="signup col-md-6">
+        <span class="title"> PREFERÊNCIAS </span>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-8">
+                    <label> Com qual frequência costuma sair? </label>
+                    {{form.frequency}}
+                </div>
+                <div class="col-md-4">
+                    <label> Qual tipo de evento? </label>
+                    {{form.type}}
+                </div>
+                <div class="col-md-6">
+                    <label> Qual seu GOSTO MUSICAL? </label>
+                    {{form.music_taste}}
+                </div>
+            
+                <div class="col-md-6">
+                    <label> Consome bebida alcoolica? </label>
+                    {{form.drink}}
+                </div>
+                <div class="col-md-8">
+                    <label> Qual a sua faixa de preço? </label>
+                    {{form.price}}
+                </div>
+
+                <div class="col-md-4">
+                    <label> Importa a distância? </label>
+                    {{form.distance}}
+                </div>
+            </div>
+            <br />
+            <button type="submit">ENVIAR</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

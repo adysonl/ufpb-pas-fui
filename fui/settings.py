@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'main',
     'user',
     'profile',
+    'event'
 ]
 
 MIDDLEWARE = [
@@ -85,7 +86,7 @@ WSGI_APPLICATION = 'fui.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'fui',
+        'NAME': 'fui2',
         'USER' : 'postgres',
         'PASSWORD' : 'admin',
         'HOST' : 'localhost',
@@ -116,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt_BR'
 
 TIME_ZONE = 'UTC'
 

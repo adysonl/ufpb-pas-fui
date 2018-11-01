@@ -1,0 +1,56 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% block content %}
+<section class="col-md-12 centered" style="background: transparent">
+  <div class="events centered">
+    <div class="row description">
+      <div class="col-md-8">
+        <img src="{{event.image.url}}" class="img-fluid" />
+      </div>
+      <div class="col-md-4" style="text-align: left;">
+        <div class="title"> {{ event.name }} </div>
+        <p>{{ event.description }} </p>
+          <li>{% if event.modality == "fr" %} Grátis {% else %} Pago {% endif %}</li>
+          <li>+18: {{ event.forbidden | yesno }}</li>
+          <li>Alcool: {{ event.drinks | yesno }}</li>
+          <li>Capacidade: {{ event.capacity }}</li>
+          <li>Início: {{ event.start_date }}</li>
+          <li>Final: {{ event.end_date }}</li>
+          <li>Nota: {{ event.rate }}</li>
+      </div>
+    </div>
+    {% if ratings %}
+      <div class="rates" style="text-align: left; padding: 10px;">
+        AVALIAÇÕES
+        {% for rt in ratings %}
+        <div class="row rate">
+          <a href="#" class="col-md-3 bdright">{{rt.user}}</a>
+          <span class="col-md-6 bdright">{{rt.comment}}</span>
+          <span class="col-md-1 bdright">{{rt.note}}</span>
+          {% if request.user.username == rt.user %}
+          <a href="{% url 'edite_rating' rt.id %}" class="col-md-1"><i class="material-icons">edit</i></a>
+          {% endif %}
+        </div>
+        {% endfor %}
+        <div class="pagination">
+          <span class="step-links">
+            {% if ratings.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ ratings.previous_page_number }}">previous</a>
+            {% endif %}
+        
+            <span class="current">
+              Page {{ ratings.number }} of {{ ratings.paginator.num_pages }}.
+            </span>
+        
+            {% if ratings.has_next %}
+            <a href="?page={{ ratings.next_page_number }}">next</a>
+            <a href="?page={{ ratings.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+          </span>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
