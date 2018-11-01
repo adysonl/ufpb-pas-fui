@@ -3,8 +3,8 @@
 
 {% block content %}
 <style>
-.my-row { 
-  height: 100%;  
+.my-row {
+  height: 100%;
 }
 </style>
 <section class="main">
@@ -23,26 +23,14 @@
     </div>
     <a class="title" href="{% url 'details_event' evt.id %}"><p>{{ evt.name }}</p></a>
     <p class="event-desc">{{ evt.description }}</p>
-    <a href="{% url 'create_event_comment' evt.id %}">AVALIAR</a>
   </div>
   {% endfor %}
 </div>
-</section>
-<div class="pagination">
-  <span class="step-links">
-    {% if events.has_previous %}
-    <a href="?page=1">&laquo; first</a>
-    <a href="?page={{ events.previous_page_number }}">previous</a>
-    {% endif %}
 
-    <span class="current">
-      Page {{ events.number }} of {{ events.paginator.num_pages }}.
-    </span>
-
-    {% if events.has_next %}
-    <a href="?page={{ events.next_page_number }}">next</a>
-    <a href="?page={{ events.paginator.num_pages }}">last &raquo;</a>
-    {% endif %}
-  </span>
+<div class="row text-center">
+  <div class="col-12">
+  <a href="{% url 'search' %}" class="col-2 float-right"><b>VER TODOS >><b></a>
 </div>
+</div>
+</section>
 {% endblock %}

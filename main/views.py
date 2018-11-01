@@ -19,7 +19,7 @@ def index(request):
     return render(request, 'home/index.html', context=context_dict)
 
 def search(request):
-    keyword = request.GET.get('search')
+    keyword = request.GET.get('search') or ""
     events = list(Event.objects.filter(Q(name__contains=keyword) | Q(description__contains=keyword)))
     events.sort(key=lambda event: event.rate, reverse=True)
     return render(request, 'search/search.html', {'events':events})
